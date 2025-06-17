@@ -34,6 +34,11 @@
             width: 800px;
             animation: fadeInScale 0.7s ease-out;
             box-sizing: border-box; /* Include padding in width calculation */
+            /* Ensure it's centered on the page */
+            position: absolute; /* Use absolute positioning for centering */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .brand-selection-container h1 {
@@ -138,16 +143,24 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
             overflow-y: auto;
-            animation: fadeIn 0.7s ease-out;
-            display: flex;
-            flex-direction: column;
+            /* New animation for center fade reveal */
+            animation: centerFadeInReveal 0.7s ease-out;
+            flex-direction: column; /* Ensure it's a flex column when displayed */
             gap: 20px; /* Space between sections */
             box-sizing: border-box; /* Include padding in width calculation */
+            /* Center the main container as well */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90vw; /* Keep it responsive */
+            max-height: 90vh; /* Keep it responsive */
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* Updated keyframes for center fade reveal */
+        @keyframes centerFadeInReveal {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
         }
 
         .header {
@@ -834,7 +847,7 @@
                     parts: {
                         brewUnit: 'Removable, patented brew unit',
                         grinders: '2-3 precision ceramic grinders, 2 bean hoppers (1.2kg capacity each)',
-                        milkSystem: 'FoamMaster™ (hot and cold milk & milk foam, adjustable consistency), CleanMaster® fully automatic cleaning system with integrated cleaning tank',
+                        milkSystem: 'FoamMaster™ (hot and cold milk & milk foam, adjustable consistency, integrated cleaning system)',
                         chocolateFlavor: 'One or two separate powder dosing systems',
                         coolingUnits: 'Compatible with SU05/SU12 cooling units',
                         touchDisplay: '8" or 10.4" intuitive touchscreen with video capability',
@@ -1240,7 +1253,7 @@
             };
 
             // Function to dynamically create and display checkboxes
-            function displayMachineCheckboxes(targetElementId, typeFilter) {
+            function displayMachineCheckboxes(targetElementId) {
                 const container = document.getElementById(targetElementId);
                 container.innerHTML = ''; // Clear previous checkboxes
 
@@ -1253,8 +1266,6 @@
 
                 modelsForBrand.forEach(machineKey => {
                     const data = machineData[machineKey];
-                    // You can add more specific type filtering here if needed, e.g., only show grinders for parts section
-                    // For now, will show all machines for all sections that use this function.
                     const label = document.createElement('label');
                     label.innerHTML = `<input type="checkbox" class="${targetElementId.replace('SelectionCheckboxes', '')}-checkbox" value="${machineKey}"> ${data.name}`;
                     container.appendChild(label);
@@ -1325,12 +1336,14 @@
                                 </tbody>
                             </table>
 
-                            <h4>Water Supply & Drainage:</h4>
-                            <ul>
-                                <li><strong>Supply:</strong> ${data.water.supply}</li>
-                                <li><strong>Drainage:</strong> ${data.water.drainage}</li>
-                                <li><strong>Water Quality Requirements:</strong> ${data.water.quality}</li>
-                            </ul>
+                            ${data.water ? `
+                                <h4>Water Supply & Drainage:</h4>
+                                <ul>
+                                    <li><strong>Supply:</strong> ${data.water.supply}</li>
+                                    <li><strong>Drainage:</strong> ${data.water.drainage}</li>
+                                    <li><strong>Water Quality Requirements:</strong> ${data.water.quality}</li>
+                                </ul>
+                            ` : ''}
                         `;
                         machineDiv.innerHTML = contentHtml;
                         machineDetailsContent.appendChild(machineDiv);
@@ -1623,8 +1636,10 @@
                 });
             });
 
-            // Initial setup: The brand selection page is visible by default
-            // mainContentPage.style.display = 'none'; // This is already set by default in CSS for main-container
+            // Initial setup: The brand selection page is visible by default, main content page is hidden
+            mainContentPage.style.display = 'none';
+            brandSelectionPage.style.display = 'flex'; // Ensure it's explicitly set to flex to be visible
+
         });
     </script>
 </body>
