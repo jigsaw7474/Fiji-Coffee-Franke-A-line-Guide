@@ -170,30 +170,71 @@
             align-items: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
             margin-bottom: 2rem;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            gap: 1rem; /* Gap between main title and brand info */
+        }
+
+        .header .main-title-group {
+            display: flex;
+            align-items: center;
+            flex-grow: 1; /* Allows it to take available space */
+            justify-content: center; /* Center on small screens */
+            min-width: 250px; /* Ensure it doesn't get too small */
+        }
+
+        @media (min-width: 768px) { /* Adjust for larger screens */
+            .header .main-title-group {
+                justify-content: flex-start; /* Align left on larger screens */
+            }
+        }
+
+        .header .fiji-coffee-logo {
+            width: 50px; /* Fixed size for Fiji Coffee logo */
+            height: 50px;
+            object-fit: contain;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px;
+            margin-right: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
         .header h1 {
             font-size: 2.2rem;
             font-weight: 700;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-            flex-grow: 1;
-            text-align: center;
+            margin: 0; /* Remove default h1 margin */
         }
 
-        .header .logo-container {
+        .header .brand-info-group {
+            display: flex;
+            align-items: center;
+            margin-left: auto; /* Push to right on larger screens */
+            margin-top: 0.5rem; /* For wrapping on small screens */
+            min-width: 200px; /* Ensure it doesn't get too small */
+            justify-content: center; /* Center on small screens */
+        }
+        @media (min-width: 768px) {
+            .header .brand-info-group {
+                margin-top: 0;
+                justify-content: flex-end; /* Align right on larger screens */
+            }
+        }
+
+        .header .brand-logo-container { /* Renamed from .logo-container for clarity */
+            width: 40px; /* Smaller size for brand logo */
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100px;
-            height: 100px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            margin-right: 1.5rem;
-            overflow: hidden;
+            margin-right: 10px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
 
-        .header .logo-container img {
+        .header .brand-logo-container img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
@@ -205,7 +246,6 @@
             color: #d1e5f8;
             text-decoration: none;
             transition: color 0.3s ease;
-            margin-left: 1.5rem;
             white-space: nowrap;
         }
 
@@ -496,20 +536,30 @@
                 padding: 1rem;
                 margin-bottom: 1.5rem;
             }
-            .header .logo-container {
+            .header .main-title-group {
+                flex-direction: column;
+                margin-bottom: 0.5rem;
+                justify-content: center;
+            }
+            .header .fiji-coffee-logo {
                 margin-right: 0;
                 margin-bottom: 0.5rem;
-                order: 1;
             }
             .header h1 {
                 font-size: 1.8rem;
-                order: 2;
+            }
+            .header .brand-info-group {
+                margin-left: 0;
+                margin-top: 0.5rem;
+                justify-content: center;
+            }
+            .header .brand-logo-container {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
             }
             .header .website-link {
                 margin-left: 0;
-                margin-top: 0.5rem;
                 font-size: 0.9rem;
-                order: 3;
             }
             .menu-bar {
                 flex-direction: column;
@@ -574,7 +624,11 @@
     <div id="brandSelectionPage" class="brand-selection-container">
         <h1>Select a Brand</h1>
         <div class="fiji-coffee-overview">
-            <h2>General Overview of Fiji Coffee</h2>
+            <!-- Updated title for Fiji Coffee Overview -->
+            <div class="flex items-center mb-4">
+                <img src="https://github.com/jigsaw7474/Fiji-Coffee-Franke-A-line-Guide/blob/main/logo.jpg?raw=true" alt="Fiji Coffee Logo" class="w-16 h-16 object-contain rounded-full bg-white p-2 mr-4 shadow-md">
+                <h2>Fiji Coffee</h2>
+            </div>
             <p>
                 Fiji Coffee, a proud division of Lawhill Group, has been dedicated to delivering exceptional coffee experiences across Fiji since 1988. We specialize in the importation and distribution of premium coffee machines, including renowned brands like Franke and Dalla Corte, ensuring our clients have access to world-class brewing technology. Beyond equipment, we also supply high-quality coffee beans and a comprehensive range of related products. Our commitment extends to providing unparalleled technical support and service through our dedicated team, ensuring optimal machine performance and customer satisfaction. We aim to be the complete coffee solution provider for businesses of all sizes in Fiji.
             </p>
@@ -591,16 +645,24 @@
                 <a href="https://www.dallacorte.com/" target="_blank">dallacorte.com</a>
             </div>
         </div>
+        <footer class="mt-8 text-center text-gray-600 text-sm w-full">
+            © 2025 Fiji Coffee. All rights reserved.
+        </footer>
     </div>
 
     <!-- Main Content Page -->
     <div id="mainContentPage" class="main-container">
         <div class="header">
-            <div class="logo-container">
-                <img id="headerBrandLogo" src="" alt="Brand Logo">
+            <div class="main-title-group">
+                <img src="https://github.com/jigsaw7474/Fiji-Coffee-Franke-A-line-Guide/blob/main/logo.jpg?raw=true" alt="Fiji Coffee Logo" class="fiji-coffee-logo">
+                <h1>Fiji Coffee - Coffee Machines</h1>
             </div>
-            <h1>Fiji Coffee - Coffee Machines</h1>
-            <a id="headerBrandWebsite" href="#" target="_blank" class="website-link"></a>
+            <div class="brand-info-group">
+                <div class="brand-logo-container">
+                    <img id="headerBrandLogo" src="" alt="Brand Logo">
+                </div>
+                <a id="headerBrandWebsite" href="#" target="_blank" class="website-link"></a>
+            </div>
         </div>
 
         <div class="menu-bar">
@@ -691,6 +753,9 @@
                 <p class="text-gray-600">Select one or more machines above to view their parts and modules.</p>
             </div>
         </div>
+        <footer class="mt-8 text-center text-gray-600 text-sm w-full">
+            © 2025 Fiji Coffee. All rights reserved.
+        </footer>
     </div>
 
     <script>
@@ -756,16 +821,16 @@
                         daily: [
                             'Empty and clean the coffee grounds container and drip tray. Wash with warm, soapy water and rinse thoroughly.',
                             'Wipe down all external surfaces of the machine, including the touch display, using a damp cloth and mild cleaner. Avoid abrasive materials.',
-                            'Perform an automatic rinse cycle for the coffee dispensing system through the machine\'s menu (usually "Cleaning & Maintenance" -> "Clean Coffee Machine").',
-                            'For milk systems, perform a quick rinse of the milk spout and steam wand after each use. At the end of the day, run the automatic daily milk system cleaning cycle if available.'
+                            'Navigate to "Cleaning & Maintenance" on the touchscreen. Select "Clean Coffee Machine" and follow the prompts for the automatic rinse cycle for the coffee dispensing system.',
+                            'For milk systems, after each use, perform a quick rinse of the milk spout and steam wand. At the end of the day, access the "Cleaning & Maintenance" menu and run the automatic daily milk system cleaning cycle.'
                         ],
                         weekly: [
-                            'Perform a deep cleaning of the milk system using Franke Milk Cleaning Agent. Follow the machine\'s prompts for the "EasyClean" automatic milk system cycle. This involves placing the milk suction hose into the cleaning solution.',
+                            'From the "Cleaning & Maintenance" menu, select the "EasyClean" cycle for the milk system. Place the milk suction hose into a container with Franke Milk Cleaning Agent as prompted by the screen. Follow all on-screen instructions until completion.',
                             'Remove the coffee spout and other easily detachable brew parts (refer to your machine\'s manual for specific parts). Soak them in hot water with a mild detergent for 15-20 minutes, then scrub gently to remove coffee oil residue. Rinse thoroughly and reassemble.',
                             'Clean the bean hoppers: Empty any remaining beans, wipe the inside of the hopper with a dry cloth to remove oil buildup, and ensure no residue is left before refilling.'
                         ],
                         monthly: [
-                            'Perform a deep descaling of the machine using a Franke-certified descaling agent. Follow the machine\'s on-screen instructions for the descaling program. This is crucial for preventing limescale buildup in the boilers and water lines, especially in areas with hard water.',
+                            'Navigate to the "Cleaning & Maintenance" menu and initiate the deep descaling program. Place a Franke-certified descaling agent into the water tank (or follow specific instructions for plumbed-in units) as indicated on screen. Follow all on-screen instructions meticulously until the cycle is complete. This is crucial for preventing limescale buildup in the boilers and water lines, especially in areas with hard water.',
                             'Inspect and clean the air filter (if accessible) and rear ventilation vents to ensure proper airflow and prevent overheating.',
                             'For machines with chocolate/powder modules, perform the recommended weekly manual cleaning of their hoses and tanks, as outlined in the general cleaning guide.',
                             'Perform a system health check via the UI diagnostics menu to monitor machine performance and identify any potential issues early.'
@@ -839,15 +904,15 @@
                         daily: [
                             'Empty and wash the drip tray and coffee grounds container with warm, soapy water. Rinse thoroughly and replace.',
                             'Wipe down all external surfaces of the machine, including the touch display, with a damp cloth. For milk residues, use a dedicated milk cleaner-soaked cloth.',
-                            'Run an automatic rinse for all product lines (coffee, milk, chocolate) via the machine\'s menu to flush out residues.'
+                            'Use the machine\'s menu to run an automatic rinse for all product lines (coffee, milk, chocolate) to flush out residues.'
                         ],
                         weekly: [
-                            'Initiate and complete the full "CleanMaster" automated cleaning cycle. This typically involves inserting cleaning tablets for the coffee system and placing the milk hose into a container with Franke Milk Cleaning Agent.',
+                            'Initiate and complete the full "CleanMaster" automated cleaning cycle via the touchscreen. The machine will guide you through inserting cleaning tablets for the coffee system and placing the milk hose into a container with Franke Milk Cleaning Agent. Follow all on-screen prompts carefully.',
                             'Remove the brewing group (refer to the manual for specific instructions as this can vary). Soak it in hot water with a cleaning detergent for 20-30 minutes, then use a brush to remove all coffee residue and oils. Rinse under running water until clean and reassemble properly.',
                             'If applicable, manually clean any milk lines, nozzles, or frother components not covered by the automatic cycle using brushes and approved cleaning solutions. Rinse thoroughly.'
                         ],
                         monthly: [
-                            'Perform a deep descaling process using Franke-approved descaling solution. This will remove mineral buildup from boilers and water paths. Follow the machine\'s specific menu prompts for this cycle.',
+                            'Perform a deep descaling process using Franke-approved descaling solution. The machine will provide specific menu prompts for this cycle; follow them precisely to remove mineral buildup from boilers and water paths.',
                             'Inspect and clean the air vents and filters (if accessible) to ensure proper airflow and prevent the machine from overheating.',
                             'Review the machine\'s internal diagnostics (if available) to check for system health and any alerts or warnings that may indicate pending maintenance needs.'
                         ]
@@ -916,18 +981,17 @@
                         daily: [
                             'Empty and clean the coffee grounds container and drip tray. Wash with warm, soapy water and rinse thoroughly.',
                             'Wipe down all external surfaces of the machine, including the touch display, with a damp cloth. For milk residues, use a dedicated milk cleaner-soaked cloth.',
-                            'Perform an automatic rinse for all product lines (coffee, milk, chocolate) via the machine\'s menu to flush out residues.'
+                            'The machine performs an automatic rinse for coffee and milk systems at shutdown. Ensure this cycle completes fully.'
                         ],
                         weekly: [
-                            'Initiate and complete the full "CleanMaster" automated cleaning cycle. This typically involves inserting cleaning tablets for the coffee system and placing the milk hose into a container with Franke Milk Cleaning Agent.',
-                            'Remove the brewing group (refer to the manual for specific instructions as this can vary). Soak it in hot water with a cleaning detergent for 20-30 minutes, then use a brush to remove all coffee residue and oils. Rinse under running water until clean and reassemble properly.',
-                            'If applicable, manually clean any milk lines, nozzles, or frother components not covered by the automatic cycle using brushes and approved cleaning solutions. Rinse thoroughly.',
-                            'For chocolate dispenser units, perform the separate weekly manual cleaning of hoses and tanks as recommended in the manual.'
+                            'Initiate and complete the full "CleanMaster" automated cleaning cycle via the touchscreen. The machine will guide you through inserting cleaning tablets for the coffee system and placing the milk hose into a container with Franke Milk Cleaning Agent. Follow all on-screen prompts carefully.',
+                            'Manually remove and clean foam nozzles, milk lines, and any iced-coffee attachments. Soak them in warm, soapy water, scrub away residue, rinse thoroughly, and air dry before reassembling.',
+                            'If applicable, perform thorough cleaning of the chocolate dispenser following manual instructions, as this may require specific component removal.'
                         ],
                         monthly: [
-                            'Perform a deep descaling process using Franke-approved descaling solution. This will remove mineral buildup from boilers and water paths. Follow the machine\'s specific menu prompts for this cycle.',
+                            'Perform a deep descaling process using Franke-approved descaling solution. The machine will guide you through this cycle on its display. This removes mineral buildup from boilers and water paths.',
                             'Inspect and clean the air vents and filters (if accessible) to ensure proper airflow and prevent the machine from overheating.',
-                            'Review the machine\'s internal diagnostics (if available) to check for system health and any alerts or warnings that may indicate pending maintenance needs.'
+                            'Review the machine\'s internal diagnostics via the touchscreen to check for system health and any alerts or warnings that may indicate pending maintenance needs.'
                         ]
                     },
                     parts: {
@@ -965,8 +1029,7 @@
                             { error: 'Water leaks from various points', solution: '<strong>Pinpoint the leak location.</strong> Common areas include drip tray connections, brew unit seals, or internal hoses. Tighten any loose connections. Worn gaskets or seals will need replacement. Frequent descaling reduces mineral buildup that can cause leaks. Contact technician if internal or persistent.' }
                         ],
                         'Milk System': [
-                            { error: 'Milk not frothing / Poor milk foam quality', solution: '<strong>Perform daily and weekly CleanMaster cycles for the milk system diligently.</strong> Ensure milk nozzles and lines are clear of dried milk residue. Check milk temperature (should be cold) and fat content. Verify milk suction hose is clean, not kinked, and properly submerged. Descale the milk system to clear limescale affecting performance.' },
-                            { error: 'Milk not dispensing from FoamMaster', solution: '<strong>Check milk hose for blockages or kinks.</strong> Ensure milk container is full and milk type is selected correctly. Run milk cleaning cycles multiple times. Inspect FoamMaster components for residue buildup. If issue persists, internal milk pump or valve might be affected.' }
+                            { error: 'Milk not frothing / Poor milk foam quality', solution: '<strong>Perform daily and weekly CleanMaster cycles for the milk system diligently.</strong> Ensure milk nozzles and lines are clear of dried milk residue. Check milk temperature (should be cold) and fat content. Verify milk suction hose is clean, not kinked, and properly submerged. Descale the milk system to clear limescale affecting performance.' }
                         ],
                         'Grinder Issues': [
                             { error: 'Grinder blocked / Beans not grinding', solution: '<strong>Empty bean hopper and inspect for foreign objects.</strong> Clean residual coffee grounds from the grinder. If bean flow is impeded, check the bean hopper outlet. If the motor sounds like it\'s struggling but not grinding, it may be a jammed burr or motor issue.' },
@@ -999,20 +1062,20 @@
                     },
                     cleaning: {
                         daily: [
-                            'Initiate an automatic rinse cycle for the coffee, milk, and chocolate systems via the maintenance menu before closing operations.',
+                            'Initiate an automatic rinse cycle for the coffee, milk, and chocolate systems via the maintenance menu before closing operations. The machine\'s display will guide you.',
                             'Remove and wipe clean all powder hoppers (e.g., chocolate, flavor). Ensure no residue is clinging to the sides.',
                             'Clean the brew spouts and dispensing nozzles using a small brush and warm, soapy water. Rinse thoroughly.',
                             'Wipe down the entire exterior of the machine, including the touch display, milk cooler (if external), and steam wands, using a damp cloth and mild, food-safe cleaner.'
                         ],
                         weekly: [
-                            'Run the "EasyClean" deep cleaning cycle for the milk, flavor, and chocolate lines. This automated process uses specialized cleaning agents to thoroughly sanitize the internal paths.',
+                            'Run the "EasyClean" deep cleaning cycle for the milk, flavor, and chocolate lines. The machine\'s touchscreen will provide step-by-step guidance, instructing you to place milk suction hoses into cleaning solution and confirm actions.',
                             'Remove the entire brew unit (refer to the manual for detailed instructions). Soak the brew unit in a cleaning solution, scrub to remove all coffee residue and oils, then rinse thoroughly under running water. Allow to air dry before reassembling.',
                             'Clean any external coin or payment modules and their suction hoses to ensure proper function and hygiene.'
                         ],
                         monthly: [
-                            'Perform a comprehensive deep descaling procedure using a Franke-certified descaling agent. This is crucial for maintaining optimal performance and extending the lifespan of the triple-boiler system by removing mineral buildup.',
+                            'Perform a comprehensive deep descaling procedure using a Franke-certified descaling agent. The A800\'s display will lead you through each step of this crucial maintenance process.',
                             'Inspect and thoroughly clean the air filters, rear ventilation vents, and internal fans to prevent dust accumulation and ensure adequate cooling for high-volume operation.',
-                            'Conduct a detailed system health check via the UI diagnostics menu. This allows you to monitor key performance indicators and proactively address any potential issues.'
+                            'Conduct a detailed system health check via the UI diagnostics menu on the touchscreen. This allows you to monitor key performance indicators and proactively address any potential issues.'
                         ]
                     },
                     parts: {
@@ -1079,22 +1142,22 @@
                     },
                     cleaning: {
                         daily: [
-                            'Clean the coffee outlet by inserting one cleaning tablet into the coffee chute (lift the rubber flap in front of the bean hopper) and following the on-screen prompts for the coffee system rinse cycle.',
-                            'For the milk system, prepare a cleaning solution of 400ml water with 30ml Franke Milk Cleaner. Place it in a cleaning container under the Autosteam Pro S3 steam wand. Run the automatic milk cleaning cycle as prompted by the machine.',
-                            'After the milk cleaning cycle, empty the cleaning container, fill it with 500ml of clean water, and place it back under the steam wand to perform a thorough rinse cycle for the milk lines.',
+                            'The machine will prompt you to clean the coffee outlet. Insert one cleaning tablet into the coffee chute (lift the rubber flap in front of the bean hopper) and follow the on-screen prompts for the coffee system rinse cycle.',
+                            'For the milk system, prepare a cleaning solution of 400ml water with 30ml Franke Milk Cleaner. The machine will prompt you to place this in a cleaning container under the Autosteam Pro S3 steam wand. Run the automatic milk cleaning cycle as prompted by the machine.',
+                            'After the milk cleaning cycle, the machine will prompt you to empty the cleaning container. Fill it with 500ml of clean water, and place it back under the steam wand to perform a thorough rinse cycle for the milk lines.',
                             'Empty and clean the coffee grounds bin and drip tray. Wash with warm, soapy water, rinse thoroughly, and dry before reinserting.',
                             'Wipe down all exterior surfaces, including the touch display, side panels, and all dispensing areas, with a clean, soft, damp cloth. Avoid harsh chemicals.'
                         ],
                         weekly: [
-                            'Perform more in-depth cleaning cycles for both coffee and milk systems as prompted by the machine\'s maintenance menu. These cycles often require specific Franke cleaning tablets and solutions for optimal hygiene.',
+                            'Perform more in-depth cleaning cycles for both coffee and milk systems as prompted by the machine\'s maintenance menu. These cycles often require specific Franke cleaning tablets and solutions for optimal hygiene, and the touchscreen will guide you through each step.',
                             'If applicable, manually clean any easily removable parts of the brew unit as per the full user manual. This may involve soaking and scrubbing to remove stubborn coffee oils and residues.',
                             'Inspect and clean the bean hoppers, ensuring they are free of old beans and coffee oil buildup. Wipe thoroughly with a dry cloth.',
-                            'Regular descaling is recommended based on your water hardness and machine usage. The machine will often alert you when descaling is due. Follow the prompted descaling program using a Franke-certified descaling agent.'
+                            'Regular descaling is recommended based on your water hardness and machine usage. The machine will often alert you when descaling is due on its display. Follow the prompted descaling program using a Franke-certified descaling agent, as guided by the touchscreen.'
                         ],
                         monthly: [
-                            'Perform a comprehensive deep descaling of the machine\'s internal components, including boilers and hot water lines, using a certified descaling agent. This extends the machine\'s lifespan and ensures consistent performance.',
+                            'Perform a comprehensive deep descaling of the machine\'s internal components, including boilers and hot water lines, using a certified descaling agent. The machine\'s UI will provide detailed instructions for this process. This extends the machine\'s lifespan and ensures consistent performance.',
                             'If accessible, inspect and clean air filters and rear ventilation areas to maintain optimal airflow and prevent the machine from overheating during high-volume operation.',
-                            'Conduct a thorough system health check via the UI diagnostics. This allows for proactive identification of any potential issues and ensures all machine functions are operating optimally.'
+                            'Conduct a thorough system health check via the UI diagnostics on the touchscreen. This allows for proactive identification of any potential issues and ensures all machine functions are operating optimally.'
                         ]
                     },
                     parts: {
@@ -1109,7 +1172,7 @@
                     installation: {
                         powerSupply: '2 x 208V (30A) - Requires two L6-30R receptacles',
                         waterConnection: '3/4" mains with safety shut-off valve, G3/8” union nut fitting.',
-                        drainage: 'Dedicated drain hose (Dia. 16 mm / 0.62"), minimum gravity slope 2% (pump support recommended if slope is insufficient).',
+                        drainage: 'Dedicated drain hose (Dia. 16 mm / 0.62" drain hose). Minimum hose incline: 2% for gravity draining; pump support recommended if slope is insufficient).',
                         filtration: 'Mandatory decalcification filter.',
                         machineWeight: '~95 kg (empty) / Approx. 210 lbs',
                         clearanceNeeded: 'Adequate clearance for ventilation and access for servicing (specific values not found, but standard for commercial units).',
@@ -1353,6 +1416,24 @@
                     }
                 }
             };
+
+            // Function to remove on-screen guide references
+            function cleanCleaningProcedures() {
+                for (const machineKey in machineData) {
+                    if (machineData.hasOwnProperty(machineKey) && machineData[machineKey].cleaning) {
+                        const cleaning = machineData[machineKey].cleaning;
+                        for (const period in cleaning) {
+                            if (Array.isArray(cleaning[period])) {
+                                // Filter out steps that start with '**On-Screen Guide:'
+                                cleaning[period] = cleaning[period].filter(step => !step.startsWith('**On-Screen Guide:'));
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Call this function before the data is used to render content
+            cleanCleaningProcedures();
 
             // Function to dynamically create and display checkboxes
             function displayMachineCheckboxes(targetElementId) {
