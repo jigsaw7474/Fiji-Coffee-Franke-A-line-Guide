@@ -413,10 +413,6 @@
                 text-align: center;
                 gap: 1rem;
             }
-            .header h1 {
-                font-size: 1.8rem;
-                order: 2; /* Move title below logo on mobile */
-            }
             .header .logo-container {
                 margin-right: 0;
                 margin-bottom: 1rem;
@@ -785,7 +781,7 @@
                         weight: '~38-45 kg'
                     },
                     water: {
-                        supply: 'Cold mains connection with $3/4^{\prime\prime}$ fitting. Water pressure: $1-8$ bar (0.1-0.8 MPa). Water temp: 5-35°C. High-quality filtration required. Water connection: 3/8” compression fitting.',
+                        supply: 'Cold mains connection with 3/4" fitting. Water pressure: 1-8 bar (0.1-0.8 MPa). Water temp: 5-35°C. High-quality filtration required. Water connection: 3/8” compression fitting.',
                         drainage: 'Tray-connected outlet. Overflow protection included. Gravity-based outlet, must be lower than base unit. Internal hose with overflow, Gravity drain ≥2%.',
                         quality: 'Total Hardness: 70 – 140 ppm (mg/l), Carbonate hardness: 3 – 6° dH CH (50–105 ppm), pH: 6.5–7.5, Chlorine: < 0.5 mg/l, Chloride: < 30 mg/l, TDS: 30 – 150 ppm (mg/l), Electrical conductivity: 50 – 200 μS/cm, Iron Content: < 0.3 mg/l, Pressure: 80–800 kPa (0.8–8 bar), Flow rate: > 0.1 l/sec, Temperature: < 25°C.'
                     },
@@ -811,7 +807,7 @@
                     },
                     installation: {
                         powerSupply: '208-240 V (1/3 phase)',
-                        waterConnection: '$3/4^{\prime\prime}$ mains fitting',
+                        waterConnection: '3/4" mains fitting',
                         drainage: 'Internal hose with overflow, Gravity drain ≥2%',
                         filtration: 'Required',
                         machineWeight: '~38-45 kg',
@@ -853,7 +849,7 @@
                         weight: '~58-65 kg / Approx. 38 kg'
                     },
                     water: {
-                        supply: 'Cold mains $(10-30^{\circ}C)$ via $3/4^{\prime\prime}$ inlet hose. Pressure: 1-8 bar. Uses flow meter and water hardness sensors. Water filtration system (e.g. BRITA Purity C150 or similar) highly recommended. Water connection: metal hose with G3/8” union nut.',
+                        supply: 'Cold mains (10-30°C) via 3/4" inlet hose. Pressure: 1-8 bar. Uses flow meter and water hardness sensors. Water filtration system (e.g. BRITA Purity C150 or similar) highly recommended. Water connection: metal hose with G3/8” union nut.',
                         drainage: 'High-volume drain port for coffee, milk, and foam rinse water. Shared with optional modules (milk cooler, chocolate unit). Must ensure unimpeded flow and regular maintenance.',
                         quality: 'Total Hardness: 70 – 140 ppm (mg/l), Carbonate hardness: 3 – 6° dH CH (50–105 ppm), pH: 6.5–7.5, Chlorine: < 0.5 mg/l, Chloride: < 30 mg/l, TDS: 30 – 150 ppm (mg/l), Electrical conductivity: 50 – 200 μS/cm, Iron Content: < 0.3 mg/l, Pressure: 80–800 kPa (0.8–8 bar), Flow rate: > 0.1 l/sec, Temperature: < 25°C.'
                     },
@@ -883,7 +879,7 @@
                     },
                     installation: {
                         powerSupply: '208-240 V commercial grade',
-                        waterConnection: '$3/4^{\prime\prime}$ mains, 1-8 bar',
+                        waterConnection: '3/4" mains, 1-8 bar',
                         drainage: 'Shared drain (milk/choc), Clear high-volume outlet',
                         filtration: 'Strongly recommended',
                         machineWeight: '~58-65 kg',
@@ -932,7 +928,7 @@
                         weight: '~75-95 kg / Approx. 58 kg'
                     },
                     water: {
-                        supply: 'Requires stable cold mains line, $3/4^{\prime\prime}$ thread with safety shut-off valve. Integrated water hardness monitoring. Use of decalcification filter mandatory for warranty compliance. Water connection: 3/8” compression fitting.',
+                        supply: 'Requires stable cold mains line, 3/4" thread with safety shut-off valve. Integrated water hardness monitoring. Use of decalcification filter mandatory for warranty compliance. Water connection: 3/8” compression fitting.',
                         drainage: 'High-output drainage system for simultaneous drink prep. Modular support (chocolate/flavor/milk coolers) all use shared drain. Minimum hose incline: 2% for gravity draining; pump support recommended if not possible. Shared multi-module drain, Slope 22% or pump support.',
                         quality: 'Total Hardness: 70 – 140 ppm (mg/l), Carbonate hardness: 3 – 6° dH CH (50–105 ppm), pH: 6.5–7.5, Chlorine: < 0.5 mg/l, Chloride: < 30 mg/l, TDS: 30 – 150 ppm (mg/l), Electrical conductivity: 50 – 200 μS/cm, Iron Content: < 0.3 mg/l, Pressure: 80–800 kPa (0.8–8 bar), Flow rate: > 0.1 l/sec, Temperature: < 25°C.'
                     },
@@ -998,7 +994,7 @@
 
             // Show main content when enter button is clicked
             enterButton.addEventListener('click', () => {
-                welcomePage.style.display = 'none';
+                welcomePage.remove(); // This line removes the welcome page from the DOM
                 mainContentPage.style.display = 'flex';
                 // Trigger click on General Overview to show initial content
                 document.querySelector('.menu-button[data-target="overview"]').click();
