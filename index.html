@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fiji Coffee - Franke A-Line Guide</title>
+    <title>Fiji Coffee - Coffee Machines</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -20,83 +20,113 @@
             overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
-        .welcome-container {
+        .brand-selection-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
             background-color: #fff;
-            padding: 4rem;
+            padding: 3rem;
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            animation: fadeInScale 1s ease-out;
             max-width: 90vw;
-            width: 700px;
+            width: 800px;
+            animation: fadeInScale 0.7s ease-out;
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        .brand-selection-container h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2c5282;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .fiji-coffee-overview {
+            background-color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+            text-align: left;
+            width: 100%;
+        }
+
+        .fiji-coffee-overview h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #3182ce;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #a0aec0;
+            padding-bottom: 0.5rem;
+        }
+
+        .fiji-coffee-overview p {
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .brand-cards-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .brand-card {
+            background-color: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            width: 280px; /* Fixed width for consistent card size */
+            text-align: center;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: #63b3ed;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .brand-card img {
+            width: 150px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        .brand-card h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .brand-card a {
+            font-size: 0.9rem;
+            color: #63b3ed;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .brand-card a:hover {
+            color: #3182ce;
+            text-decoration: underline;
         }
 
         @keyframes fadeInScale {
             from { opacity: 0; transform: scale(0.9); }
             to { opacity: 1; transform: scale(1); }
-        }
-
-        .welcome-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #2c5282;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            animation: slideInLeft 1s ease-out;
-        }
-
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .welcome-subtitle {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #4a5568;
-            margin-bottom: 2.5rem;
-            animation: slideInRight 1s ease-out;
-        }
-
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .enter-button {
-            background: linear-gradient(45deg, #38a169, #3182ce);
-            color: white;
-            padding: 1rem 2.5rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-            animation: bounceIn 1.5s ease-out;
-        }
-
-        .enter-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .enter-button:active {
-            transform: translateY(0);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        @keyframes bounceIn {
-            0%, 20%, 40%, 60%, 80%, 100% {
-                transition-timing-function: cubic-bezier(0.215, .61, .355, 1);
-            }
-            0% { opacity: 0; transform: scale3d(.3, .3, .3); }
-            20% { transform: scale3d(1.1, 1.1, 1.1); }
-            40% { transform: scale3d(.9, .9, .9); }
-            60% { opacity: 1; transform: scale3d(1.03, 1.03, 1.03); }
-            80% { transform: scale3d(.97, .97, .97); }
-            100% { opacity: 1; transform: scale3d(1, 1, 1); }
         }
 
         .main-container {
@@ -112,6 +142,7 @@
             display: flex;
             flex-direction: column;
             gap: 20px; /* Space between sections */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         @keyframes fadeIn {
@@ -321,7 +352,9 @@
 
         .machine-details-container > div,
         .installation-manual-container > div,
-        .diagnosis-solution-container > div {
+        .diagnosis-solution-container > div,
+        .cleaning-procedures-container > div,
+        .parts-modules-container > div {
             border: 1px solid #e2e8f0;
             border-radius: 10px;
             padding: 1.5rem;
@@ -332,7 +365,9 @@
 
         .machine-details-container > div h3,
         .installation-manual-container > div h3,
-        .diagnosis-solution-container > div h3 {
+        .diagnosis-solution-container > div h3,
+        .cleaning-procedures-container > div h3,
+        .parts-modules-container > div h3 {
             border-bottom: 2px solid #a0aec0;
             padding-bottom: 0.5rem;
             margin-bottom: 1rem;
@@ -395,18 +430,22 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .welcome-container {
-                padding: 2rem;
+            .brand-selection-container {
+                padding: 1.5rem;
             }
-            .welcome-title {
-                font-size: 2.5rem;
+            .brand-selection-container h1 {
+                font-size: 2rem;
             }
-            .welcome-subtitle {
-                font-size: 1.2rem;
+            .fiji-coffee-overview h2 {
+                font-size: 1.4rem;
             }
-            .enter-button {
-                font-size: 1.2rem;
-                padding: 0.8rem 2rem;
+            .brand-cards-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            .brand-card {
+                width: 100%;
+                max-width: 280px;
             }
             .header {
                 flex-direction: column;
@@ -440,26 +479,45 @@
             .content-section h3 {
                 font-size: 1.3rem;
             }
+            .machine-selection label {
+                width: 100%; /* Make checkboxes full width on mobile */
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Welcome Page -->
-    <div id="welcomePage" class="welcome-container">
-        <h1 class="welcome-title">Fiji Coffee</h1>
-        <p class="welcome-subtitle">Franke A-Line Coffee Machines - Technical & Cleaning Guide</p>
-        <button id="enterButton" class="enter-button">Enter</button>
+    <!-- Brand Selection Page -->
+    <div id="brandSelectionPage" class="brand-selection-container">
+        <h1>Select a Brand</h1>
+        <div class="fiji-coffee-overview">
+            <h2>General Overview of Fiji Coffee</h2>
+            <p>
+                Fiji Coffee, a proud division of Lawhill Group, has been dedicated to delivering exceptional coffee experiences across Fiji since 1988. We specialize in the importation and distribution of premium coffee machines, including renowned brands like Franke and Dalla Corte, ensuring our clients have access to world-class brewing technology. Beyond equipment, we also supply high-quality coffee beans and a comprehensive range of related products. Our commitment extends to providing unparalleled technical support and service through our dedicated team, ensuring optimal machine performance and customer satisfaction. We aim to be the complete coffee solution provider for businesses of all sizes in Fiji.
+            </p>
+        </div>
+        <div class="brand-cards-wrapper">
+            <div class="brand-card" data-brand="Franke">
+                <img src="https://github.com/jigsaw7474/Fiji-Coffee-Franke-A-line-Guide/blob/main/Franke.png?raw=true" alt="Franke Logo">
+                <h2>Franke</h2>
+                <a href="https://www.franke.com/us/en/home.html" target="_blank">franke.com</a>
+            </div>
+            <div class="brand-card" data-brand="DallaCorte">
+                <img src="https://github.com/jigsaw7474/Fiji-Coffee-Franke-A-line-Guide/blob/main/Dalla%20Corte.png?raw=true" alt="Dalla Corte Logo">
+                <h2>Dalla Corte</h2>
+                <a href="https://www.dallacorte.com/" target="_blank">dallacorte.com</a>
+            </div>
+        </div>
     </div>
 
     <!-- Main Content Page -->
-    <div id="mainContentPage" class="main-container hidden">
+    <div id="mainContentPage" class="main-container">
         <div class="header">
             <div class="logo-container">
-                <img src="https://github.com/jigsaw7474/Fiji-Coffee-Franke-A-line-Guide/blob/main/logo.jpg?raw=true" alt="Company Logo">
+                <img id="headerBrandLogo" src="" alt="Brand Logo">
             </div>
-            <h1>Franke A-Line Coffee Machines</h1>
-            <a href="https://www.lawhillfj.com" target="_blank" class="website-link">www.lawhillfj.com</a>
+            <h1>Fiji Coffee - Coffee Machines</h1>
+            <a id="headerBrandWebsite" href="#" target="_blank" class="website-link"></a>
         </div>
 
         <div class="menu-bar">
@@ -481,65 +539,35 @@
             <button class="menu-button" data-target="parts">
                 <i class="fas fa-cogs"></i> Parts & Modules
             </button>
+            <button class="menu-button" data-target="brandSelection" id="backToBrandSelection">
+                <i class="fas fa-undo"></i> Back to Brands
+            </button>
         </div>
 
         <!-- Content Sections -->
         <div id="overview" class="content-section active">
-            <h2>General Overview of Franke A-Line Coffee Machines</h2>
-            <p>
-                The Franke A-Line coffee machines (A300, A400, A600, A800) represent cutting-edge technology designed for intensive use in professional environments such as offices, hotels, cafes, and service stations. These machines focus on reliability, exceptional beverage quality, and ease of use, making them a premium choice for high-demand settings.
-            </p>
-            <p>
-                Key innovations across the A-Line series include the **iQFlow™** technology for optimized extraction and enhanced flavor profiles, the **FoamMaster®** system for consistently perfect hot and cold milk foam, and advanced automatic cleaning systems like **CleanMaster®** and **EasyClean®** for superior hygiene and convenience. The intuitive touchscreens with multilingual interfaces further simplify operation for staff and self-service customers alike.
+            <h2>General Overview</h2>
+            <p id="brandOverviewContent">
+                <!-- Brand specific overview will be loaded here -->
             </p>
         </div>
 
         <div id="machineDetails" class="content-section">
             <h2>Machine-Specific Details</h2>
-            <div class="machine-selection">
-                <label>
-                    <input type="checkbox" id="selectAllMachines"> Select All
-                </label>
-                <label>
-                    <input type="checkbox" class="machine-checkbox" value="A300"> Franke A300
-                </label>
-                <label>
-                    <input type="checkbox" class="machine-checkbox" value="A400"> Franke A400
-                </label>
-                <label>
-                    <input type="checkbox" class="machine-checkbox" value="A600"> Franke A600
-                </label>
-                <label>
-                    <input type="checkbox" class="machine-checkbox" value="A800"> Franke A800
-                </label>
+            <div id="machineSelectionCheckboxes" class="machine-selection">
+                <!-- Checkboxes will be dynamically loaded here based on brand selection -->
             </div>
             <div id="machineDetailsContent" class="machine-details-container">
-                <!-- Dynamic content for selected machines will be inserted here -->
                 <p class="text-gray-600">Select one or more machines above to view their detailed specifications.</p>
             </div>
         </div>
 
         <div id="installationManual" class="content-section">
             <h2>Installation Manual</h2>
-            <div class="machine-selection">
-                <label>
-                    <input type="checkbox" id="selectAllInstallationMachines"> Select All
-                </label>
-                <label>
-                    <input type="checkbox" class="installation-checkbox" value="A300"> Franke A300
-                </label>
-                <label>
-                    <input type="checkbox" class="installation-checkbox" value="A400"> Franke A400
-                </label>
-                <label>
-                    <input type="checkbox" class="installation-checkbox" value="A600"> Franke A600
-                </label>
-                <label>
-                    <input type="checkbox" class="installation-checkbox" value="A800"> Franke A800
-                </label>
+            <div id="installationSelectionCheckboxes" class="machine-selection">
+                <!-- Checkboxes will be dynamically loaded here based on brand selection -->
             </div>
             <div id="installationManualContent" class="installation-manual-container">
-                <!-- Dynamic installation content for selected machines will be inserted here -->
                 <p class="text-gray-600">Select one or more machines above to view their installation details.</p>
             </div>
         </div>
@@ -547,22 +575,8 @@
         <div id="diagnosisSolution" class="content-section">
             <h2>Diagnosis & Solution</h2>
             <p class="text-gray-700">Select one or more machines to view common errors and their troubleshooting steps.</p>
-            <div class="machine-selection">
-                <label>
-                    <input type="checkbox" id="selectAllDiagnosisMachines"> Select All
-                </label>
-                <label>
-                    <input type="checkbox" class="diagnosis-checkbox" value="A300"> Franke A300
-                </label>
-                <label>
-                    <input type="checkbox" class="diagnosis-checkbox" value="A400"> Franke A400
-                </label>
-                <label>
-                    <input type="checkbox" class="diagnosis-checkbox" value="A600"> Franke A600
-                </label>
-                <label>
-                    <input type="checkbox" class="diagnosis-checkbox" value="A800"> Franke A800
-                </label>
+            <div id="diagnosisSelectionCheckboxes" class="machine-selection">
+                <!-- Checkboxes will be dynamically loaded here based on brand selection -->
             </div>
             <div id="diagnosisSolutionContent" class="diagnosis-solution-container">
                 <p class="text-gray-600">No machine selected. Please select a machine to see common errors.</p>
@@ -577,125 +591,68 @@
 
         <div id="cleaning" class="content-section">
             <h2>Cleaning Procedures</h2>
-            <p>All Franke machines include step-by-step touchscreen prompts to guide users through daily and weekly cleaning tasks. Below is a model-specific summary.</p>
-
-            <h3>Franke A300</h3>
-            <h4>Daily:</h4>
-            <ol>
-                <li>Menu → Cleaning & Maintenance → Clean Coffee Machine</li>
-                <li>Rinse cycle runs for coffee circuit</li>
-                <li>Clean grounds bin, drip tray, and milk spout</li>
-            </ol>
-            <h4>Weekly:</h4>
-            <ol>
-                <li>Remove spout/brew parts → soak in hot water + detergent</li>
-                <li>Milk system: Clean using Franke Milk Cleaning agent</li>
-                <li>Descale monthly depending on water quality</li>
-            </ol>
-
-            <h3>Franke A400</h3>
-            <h4>Daily:</h4>
-            <ul>
-                <li>Rinse all product lines via menu</li>
-                <li>Wipe display, handles, nozzles with microfiber cloth</li>
-            </ul>
-            <h4>Weekly:</h4>
-            <ol>
-                <li>Run CleanMaster full clean (automated)</li>
-                <li>Manual cleaning: remove brew group, soak, and brush</li>
-                <li>Clean milk lines using approved solution and rinse thoroughly</li>
-            </ol>
-
-            <h3>Franke A600</h3>
-            <h4>Daily:</h4>
-            <ul>
-                <li>Coffee and milk system auto rinse at shutdown</li>
-                <li>Clean drip tray, grounds container, exterior touch surfaces</li>
-            </ul>
-            <h4>Weekly:</h4>
-            <ol>
-                <li>Full CleanMaster cycle</li>
-                <li>Remove and clean foam nozzles, milk lines, iced-coffee attachment</li>
-                <li>Chocolate dispenser cleaning if applicable</li>
-            </ol>
-            <h4>Monthly:</h4>
-            <ul>
-                <li>Descale boilers and hot water lines</li>
-                <li>Inspect gaskets, connectors, and clean grinder housing</li>
-            </ul>
-
-            <h3>Franke A800</h3>
-            <h4>Daily:</h4>
-            <ol>
-                <li>Rinse via maintenance menu (coffee/milk/chocolate)</li>
-                <li>Remove and wipe powder hoppers, brew spouts</li>
-                <li>Clean touch display, cooler, and steam wand</li>
-            </ol>
-            <h4>Weekly:</h4>
-            <ol>
-                <li>EasyClean deep cycle: Cleans milk, flavor, chocolate lines</li>
-                <li>Brew unit removal → soak and sanitize → reassemble</li>
-                <li>Clean coin/payment modules, suction hoses</li>
-            </ol>
-            <h4>Monthly:</h4>
-            <ul>
-                <li>Deep descaling (with certified agent)</li>
-                <li>Clean air filter, rear vents, and internal fans</li>
-                <li>Perform system health check via UI diagnostics</li>
-            </ul>
+            <div id="cleaningSelectionCheckboxes" class="machine-selection">
+                <!-- Checkboxes will be dynamically loaded here based on brand selection -->
+            </div>
+            <div id="cleaningProceduresContent" class="cleaning-procedures-container">
+                <p class="text-gray-600">Select one or more machines above to view their cleaning procedures.</p>
+            </div>
         </div>
 
         <div id="parts" class="content-section">
             <h2>Parts & Modules Summary</h2>
-            <ul>
-                <li><strong>Brew Unit:</strong> Removable in all models except A300 (semi-fixed).</li>
-                <li><strong>Grinders:</strong> Ceramic or steel options; A800 supports parallel grinding.</li>
-                <li><strong>Milk Systems:</strong> FoamMaster® enables hot/cold foam in different textures.</li>
-                <li><strong>Chocolate/Flavor Units:</strong> Optional modules; cleaned via automated cycles. Require separate weekly manual clean (hoses and tanks).</li>
-                <li><strong>Cooling Units:</strong> SU05/SU12 coolers support 1-2 milk types. Cleanable drip tray, replaceable suction hose, and washable seals.</li>
-                <li><strong>Touch Display:</strong> 8" or 10.4" touchscreen (model dependent). Multilingual interface and cleaning wizards included.</li>
-            </ul>
-
-            <h3>Important Notes for Installation and Maintenance:</h3>
-            <ul>
-                <li>Use only Franke-certified cleaning agents to prevent damage or voiding warranty.</li>
-                <li>Set cleaning reminders based on beverage output volume.</li>
-                <li>Maintain water quality logs if used in a HACCP-compliant environment.</li>
-                <li>For installations, ensure:
-                    <ul>
-                        <li>Drain pipe slope 22%</li>
-                        <li>Easy access to water shutoff</li>
-                        <li>Clear ventilation behind the unit</li>
-                    </ul>
-                </li>
-            </ul>
+            <div id="partsSelectionCheckboxes" class="machine-selection">
+                <!-- Checkboxes will be dynamically loaded here based on brand selection -->
+            </div>
+            <div id="partsModulesContent" class="parts-modules-container">
+                <p class="text-gray-600">Select one or more machines above to view their parts and modules.</p>
+            </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const welcomePage = document.getElementById('welcomePage');
+            const brandSelectionPage = document.getElementById('brandSelectionPage');
             const mainContentPage = document.getElementById('mainContentPage');
-            const enterButton = document.getElementById('enterButton');
+            const brandCards = document.querySelectorAll('.brand-card');
+            const backToBrandSelectionButton = document.getElementById('backToBrandSelection');
+
             const menuButtons = document.querySelectorAll('.menu-button');
             const contentSections = document.querySelectorAll('.content-section');
 
-            const machineCheckboxes = document.querySelectorAll('.machine-checkbox');
-            const selectAllMachinesCheckbox = document.getElementById('selectAllMachines');
+            const headerBrandLogo = document.getElementById('headerBrandLogo');
+            const headerBrandWebsite = document.getElementById('headerBrandWebsite');
+            const brandOverviewContent = document.getElementById('brandOverviewContent');
+
             const machineDetailsContent = document.getElementById('machineDetailsContent');
-
-            const installationCheckboxes = document.querySelectorAll('.installation-checkbox');
-            const selectAllInstallationMachinesCheckbox = document.getElementById('selectAllInstallationMachines');
             const installationManualContent = document.getElementById('installationManualContent');
-
-            const diagnosisCheckboxes = document.querySelectorAll('.diagnosis-checkbox');
-            const selectAllDiagnosisMachinesCheckbox = document.getElementById('selectAllDiagnosisMachines');
             const diagnosisSolutionContent = document.getElementById('diagnosisSolutionContent');
+            const cleaningProceduresContent = document.getElementById('cleaningProceduresContent');
+            const partsModulesContent = document.getElementById('partsModulesContent');
 
+
+            let currentBrand = ''; // To store the currently selected brand
+
+            // Brand-specific data including logo, website, and general overview for the brand
+            const brandData = {
+                'Franke': {
+                    logo: 'https://github.com/jigsaw7474/Fiji-Coffee-Franke-A-line-Guide/blob/main/Franke.png?raw=true',
+                    website: 'https://www.franke.com/us/en/home.html',
+                    generalOverview: 'The Franke brand is synonymous with Swiss precision, innovative engineering, and timeless design in coffee systems. Franke coffee machines are engineered for demanding professional environments, delivering consistent, high-quality beverages with advanced features like FoamMaster® for perfect milk foam and iQFlow™ for optimal extraction. Their comprehensive range caters to diverse needs, from compact office solutions to high-volume commercial setups, all built with durability, ease of use, and hygiene in mind.'
+                },
+                'DallaCorte': {
+                    logo: 'https://github.com/jigsaw7474/Fiji-Coffee-Franke-A-line-Guide/blob/main/Dalla%20Corte.png?raw=true',
+                    website: 'https://www.dallacorte.com/',
+                    generalOverview: 'Dalla Corte is an Italian brand at the forefront of espresso machine and grinder innovation. Known for pioneering multi-boiler technology and digital flow control, Dalla Corte machines ensure unparalleled temperature stability and extraction precision, empowering baristas to craft exceptional coffee. Their commitment to technology extends to grinders like the Max and Edge, which offer precise dosing and grind consistency. Dalla Corte represents a blend of Italian craftsmanship and cutting-edge performance, cherished by coffee professionals worldwide.'
+                }
+            };
 
             // Consolidated Data for Machines
             const machineData = {
                 'A300': {
+                    brand: 'Franke',
+                    type: 'coffee_machine',
+                    name: 'Franke A300',
                     general: 'The Franke A300 is a compact and powerful automatic coffee machine, ideal for smaller premises like offices and hotels with limited space but high demand for quality coffee. It features an an 8-inch intuitive touchscreen and an integrated, fully automatic descaling system.',
                     overview: {
                         boilers: 'Single',
@@ -769,6 +726,9 @@
                     }
                 },
                 'A400': {
+                    brand: 'Franke',
+                    type: 'coffee_machine',
+                    name: 'Franke A400',
                     general: 'The Franke A400 is designed for sophisticated coffee experiences for all, adapting to changing needs. It offers modular brewing units (43E for espresso, 50E for volume, 50N for brewed coffee) and an optional CleanMaster system for automated cleaning.',
                     overview: {
                         boilers: 'Single modular',
@@ -837,6 +797,9 @@
                     }
                 },
                 'A600': {
+                    brand: 'Franke',
+                    type: 'coffee_machine',
+                    name: 'Franke A600',
                     general: 'The Franke A600 brings innovation and taste together, offering an exceptional solution for service and self-service operations. It features FoamMaster® for perfect milk foam, iQFlow™ technology for optimal extraction, and a modular flavor station.',
                     overview: {
                         boilers: 'Single',
@@ -916,6 +879,9 @@
                     }
                 },
                 'A800': {
+                    brand: 'Franke',
+                    type: 'coffee_machine',
+                    name: 'Franke A800',
                     general: 'The Franke A800 is the ultimate multitasker, designed for high daily output and customization. It features a triple-boiler system, multiple grinders, and the advanced FoamMaster®. It offers brew-on-demand technology and gram-throw flexibility for diverse coffee preferences.',
                     overview: {
                         boilers: 'Triple-boiler',
@@ -978,74 +944,357 @@
                             { error: 'No coffee dispensed / Very poor coffee extraction (e.g., watery, weak)', solution: '<strong>Verify sufficient coffee beans in all hoppers and correct bean selection.</strong> Check that grind size is consistent and appropriate for the desired beverage. Ensure the brew unit is completely clean and correctly inserted after removal. Perform EasyClean deep cycles regularly. Check for error messages on the display related to brewing.' }
                         ],
                         'Water System': [
-                            { error: 'No water dispensing / Low flow or pressure / Boiler not heating', solution: '<strong>Verify water supply valve is fully open and water pressure is stable.</strong> Ensure the mandatory decalcification filter is not expired or clogged and replace if necessary. Descale all boilers and water lines monthly to prevent limescale. Check for any error codes related to water flow or boiler temperature on the display. Inspect for kinks in hoses.' },
-                            { error: 'Water leaks (e.g., from drain connections, internal)', solution: '<strong>Immediately investigate the source.</strong> High-output systems can experience more wear on seals. Ensure all shared drain connections (milk, flavor, chocolate) are secure and that the drain pipe has the recommended 22% slope. Replace any worn seals or gaskets. Contact technician for complex or internal leaks.' }
+                            { error: 'No water or low water pressure', solution: '<strong>Verify water supply valve is fully open and water pressure is stable.</strong> Ensure the mandatory decalcification filter is not expired or clogged and replace if necessary. Descale all boilers and water lines monthly to prevent limescale. Check for any error codes related to water flow or boiler temperature on the display. Inspect for kinks in hoses.' },
+                            { error: 'Water leaking from machine', solution: '<strong>Immediately investigate the source.</strong> High-output systems can experience more wear on seals. Ensure all shared drain connections (milk, flavor, chocolate) are secure and that the drain pipe has the recommended 22% slope. Replace any worn seals or gaskets. Contact technician for complex or internal leaks.' }
                         ],
                         'Milk System': [
-                            { error: 'Milk not frothing / Poor quality foam / Milk not dispensing', solution: '<strong>Perform daily and weekly EasyClean deep cycles for the milk, flavor, and chocolate lines.</strong> Ensure milk suction hoses are clean, seals are intact, and milk is cold. Check for blockages in milk spouts and steam wands. Verify settings on FoamMaster for desired foam consistency. If multiple milk types are used, ensure the correct system is engaged.' }
+                            { error: 'Milk not frothing / Poor quality foam / Milk not dispensing', solution: '<strong>Perform daily and weekly EasyClean deep cycles for the milk, flavor, and chocolate lines.</strong> Ensure milk suction hoses are clean, seals are intact, and milk is cold. Check for blockages in milk spouts and steam wands. Verify settings on FoamMaster for desired foam consistency. If multiple milk types are used, ensure the correct system is engaged.' },
+                            { error: 'Milk temperature not consistent', solution: '<strong>Check milk cooler temperature settings and ensure the cooler unit is functioning properly.</strong> Verify proper milk hose connection and hygiene. Descale the milk system regularly.' }
                         ],
                         'Grinder Issues': [
                             { error: 'Grinder blocked / Beans not grinding / Inconsistent grind', solution: '<strong>Empty individual bean hoppers and check for foreign objects.</strong> Clean grinders thoroughly, especially with multiple hoppers and parallel grinding. Ensure adequate bean supply. If grind remains inconsistent or grinder is noisy, it might indicate worn ceramic burrs or a motor issue.' },
                             { error: 'Chocolate/Flavor units not dispensing', solution: '<strong>Check powder levels in hoppers.</strong> Ensure automated cleaning cycles are run for these modules. Perform separate weekly manual cleaning of hoses and tanks for flavor/chocolate. Check for blockages in dispensing nozzles and proper module integration.' }
                         ]
                     }
+                },
+                'MyticoDue': {
+                    brand: 'Franke',
+                    type: 'coffee_machine',
+                    name: 'Franke Mytico Due',
+                    general: 'The Franke Mytico Due is a high-end, automatic two-step beverage preparation machine designed for busy cafes, restaurants, and premium workplaces. It blends traditional Italian design with cutting-edge Swiss automation, offering barista-quality coffee with automated processes and an intuitive 8-inch touchscreen. Its low height enhances barista-customer interaction.',
+                    overview: {
+                        boilers: 'Multiple boilers (for coffee, hot water, and steam)', // Inferred from features
+                        grinders: '4 precision ceramic grinders (2 per coffee module)',
+                        milkSystem: 'Automatic steaming (Autosteam Pro S3) and manual (S1) steam wands, integrated milk system',
+                        optionalAddons: 'Customizable side panels (6 colors), extended bean hoppers (2.4lb)',
+                        powerVoltage: '2 x 208V (30A) - Requires two L6-30R receptacles (US spec)',
+                        dailyOutput: 'Up to 300 cups',
+                        dimensions: '925mm W x 610mm H x 644mm D',
+                        weight: '~95 kg (empty) / Approx. 210 lbs',
+                    },
+                    water: {
+                        supply: 'Stable cold mains connection, 3/4" thread with safety shut-off valve. Water temperature < 25°C. Mandatory use of decalcification filter for warranty compliance. Water connection: metal hose with G3/8” union nut.',
+                        drainage: 'High-output drainage system (Dia. 16 mm / 0.62" drain hose). Minimum hose incline: 2% for gravity draining; pump support recommended if not possible.',
+                        quality: 'Total Hardness: 70 – 140 ppm (mg/l), Carbonate hardness: 50 – 105 ppm (mg/l), pH: 6.5–7.5, Chlorine: < 0.5 mg/l, Chloride: < 30 mg/l, TDS: 30 – 150 ppm (mg/l), Electrical conductivity: 50 – 200 μS/cm, Iron Content: < 0.3 mg/l, Pressure: 80–800 kPa (0.8–8 bar), Flow rate: > 0.1 l/sec.'
+                    },
+                    cleaning: {
+                        daily: [
+                            'Insert one cleaning tablet into the coffee chute (lift rubber flap in front of bean hopper).',
+                            'Place 400ml water with 30ml milk cleaner into a cleaning container under the steam wand.',
+                            'Run the milk cleaning cycle as prompted by the machine.',
+                            'Empty the cleaning container, fill with 500ml of clean water, and place back under the steam wand to rinse.',
+                            'Clean the grounds bin and drip tray.',
+                            'Wipe down exterior surfaces and touch display with a clean, soft cloth.'
+                        ],
+                        weekly: [
+                            'Perform more in-depth cleaning cycles as prompted by the machine\'s maintenance menu.',
+                            'Ensure all removable parts (e.g., brew unit if easily removable) are cleaned manually as per the full user manual.',
+                            'Regular descaling is recommended based on water hardness and machine usage.'
+                        ],
+                        monthly: [
+                            'Deep descaling (with certified agent) depending on usage and water quality.',
+                            'Inspect and clean air filters if accessible.',
+                            'Perform system health check via UI diagnostics.'
+                        ]
+                    },
+                    parts: {
+                        brewUnit: 'Dual coffee modules with individual brewing temperatures.',
+                        grinders: '4 precision ceramic grinders (2 per coffee module).',
+                        milkSystem: 'Autosteam Pro S3 (automatic) and S1 (manual) steam wands. Integrated milk system for reduced waste.',
+                        chocolateFlavor: 'Optional flavor station (up to 3 syrups).',
+                        coolingUnits: 'Compatible with under-counter cooler options.',
+                        touchDisplay: '8" intuitive touchscreen with multimedia function.',
+                        cleaningSystem: 'EasyClean (manual addition of cleaning solution).'
+                    },
+                    installation: {
+                        powerSupply: '2 x 208V (30A) - Requires two L6-30R receptacles',
+                        waterConnection: '3/4" mains with safety shut-off valve, G3/8” union nut fitting.',
+                        drainage: 'Dedicated drain hose (Dia. 16 mm / 0.62"), minimum gravity slope 2% (pump support recommended if slope is insufficient).',
+                        filtration: 'Mandatory decalcification filter.',
+                        machineWeight: '~95 kg (empty) / Approx. 210 lbs',
+                        clearanceNeeded: 'Adequate clearance for ventilation and access for servicing (specific values not found, but standard for commercial units).',
+                        ventilation: 'Ensure proper airflow around the machine to prevent overheating.',
+                        moduleIntegration: 'Supports integration with flavor stations, milk coolers, and payment systems.'
+                    },
+                    diagnosis: {
+                        'General/Power': [
+                            { error: 'Machine not powering on', solution: '<strong>Verify both power cords are securely plugged into the correct 208V (30A) L6-30R receptacles.</strong> Check circuit breakers. If no power, contact an electrician or certified technician.' },
+                            { error: 'System error / Machine unresponsive (generic)', solution: '<strong>Attempt a soft reset by turning the machine off and on at the main power switch.</strong> If persistent, refer to the on-screen error code (if any) and consult the user manual or contact Franke service.' },
+                            { error: 'Unusual loud noises during operation', solution: '<strong>Check for obstructions in bean hoppers and grinder paths.</strong> Listen to identify the source (grinder, pump, brew unit). Perform relevant cleaning cycles. If noise persists and is unusual, it may indicate a mechanical issue requiring technician inspection.' }
+                        ],
+                        'Brewing Unit / Coffee Quality': [
+                            { error: 'No coffee dispensed / Coffee weak or watery', solution: '<strong>Ensure bean hoppers are filled and the correct blend is selected.</strong> Check grind consistency; adjust if too coarse. Perform a brewing unit cleaning cycle. If the brew unit is removable, ensure it\'s clean and correctly seated.' },
+                            { error: 'Coffee tastes bitter or sour / Inconsistent flavor', solution: '<strong>Adjust grind size (finer for bitter, coarser for sour).</strong> Verify brewing temperature settings are appropriate for the coffee type. Ensure water quality meets Franke standards (check filter status). Run cleaning cycles to remove residual coffee oils.' },
+                            { error: 'Slow coffee dispensing', solution: '<strong>Check water flow rate and pressure.</strong> Descale the coffee lines and brewing unit. Ensure grinder is not clogged and producing consistent grounds. If water pressure is low, verify main water supply and filter condition.' }
+                        ],
+                        'Water System': [
+                            { error: 'No water or low water pressure', solution: '<strong>Confirm main water supply valve is fully open and water pressure is within 0.8-8 bar.</strong> Check that the mandatory decalcification filter is not expired or clogged. Look for kinks in the water supply hose. Ensure the internal flow meter is not obstructed.' },
+                            { error: 'Water leaking from machine', solution: '<strong>Immediately disconnect power.</strong> Identify the source of the leak (e.g., hose connection, internal component). Leaks can be caused by worn seals or limescale buildup. Contact a technician for diagnosis and repair, especially if the leak is significant or internal.' }
+                        ],
+                        'Milk System (Autosteam Pro S3 / S1)': [
+                            { error: 'No steam / Poor milk frothing quality', solution: '<strong>Ensure milk is cold and fresh.</strong> Thoroughly clean the Autosteam Pro S3 wand or S1 manual wand after each use to prevent milk residue buildup. Run the milk cleaning cycles diligently. Check milk suction hose for kinks, blockages, or proper seating in milk container. Descale the milk system if limescale buildup is suspected.' },
+                            { error: 'Milk temperature issues', solution: '<strong>Verify settings for milk temperature.</strong> Ensure any connected milk cooler is functioning correctly and maintaining optimal milk temperature. If temperature is inconsistent, a sensor or heating element issue may require service.' }
+                        ],
+                        'Grinder Issues': [
+                            { error: 'Grinder blocked / Beans not grinding', solution: '<strong>Empty individual bean hoppers and check for foreign objects.</strong> Clean grinders thoroughly, especially with multiple hoppers and parallel grinding. Ensure adequate bean supply. If grind remains inconsistent or grinder is noisy, it might indicate worn ceramic burrs or a motor issue.' },
+                            { error: 'Error on touchscreen related to grinding', solution: '<strong>Follow on-screen prompts if specific error codes are displayed.</strong> Generally, this points to bean blockage, foreign objects, or a technical fault with the grinder components. Attempt a restart, clear beans, and clean thoroughly. If still present, contact technician.' }
+                        ]
+                    }
+                },
+                'Studio': {
+                    brand: 'DallaCorte',
+                    type: 'coffee_machine',
+                    name: 'Dalla Corte Studio',
+                    general: 'The Dalla Corte Studio is a compact, single-group professional espresso machine featuring multi-boiler technology. It is designed for consistency and quality, making it ideal for home baristas, small offices, and boutique cafés.',
+                    overview: {
+                        boilers: 'Multi-boiler (independent group and steam boilers)',
+                        grinders: 'External grinder required',
+                        milkSystem: 'Professional cool-touch steam wand',
+                        optionalAddons: 'Various grinder options (Max, Edge), external water filter systems.',
+                        powerVoltage: '220-240V, 2.6 kW',
+                        dailyOutput: 'Ideal for low to medium volume',
+                        dimensions: '321mm W x 390mm H x 400mm D',
+                        weight: '27.5 kg'
+                    },
+                    water: {
+                        supply: 'Internal 4L water tank or direct mains water connection. Cold water only. Recommended water pressure 1.5-3.5 bar.',
+                        drainage: 'Removable drip tray, optional connection to direct drain.',
+                        quality: 'Filtered water highly recommended for optimal taste and machine longevity. Total hardness: 70-140 ppm. pH: 6.5-7.5.'
+                    },
+                    cleaning: {
+                        daily: [
+                            'Perform group head backflushing with a blind filter and cleaning detergent.',
+                            'Purge and wipe down the steam wand immediately after each milk frothing.',
+                            'Empty and clean the drip tray and coffee grounds drawer.',
+                            'Wipe down exterior surfaces with a damp cloth.'
+                        ],
+                        weekly: [
+                            'Deep clean the group head: disassemble shower screen and dispersion block, soak in detergent, and scrub.',
+                            'Soak portafilters and baskets in a coffee machine cleaning solution.',
+                            'Check water tank (if used) for cleanliness and refill with fresh, filtered water.'
+                        ],
+                        monthly: [
+                            'Backflush with descaling solution (if not connected to perfectly filtered mains water).',
+                            'Inspect and clean the steam wand tip and internal passages.',
+                            'Perform a thorough check of all seals and gaskets.'
+                        ]
+                    },
+                    parts: {
+                        brewUnit: 'Single group, temperature-stable independent boiler.',
+                        grinders: 'External grinder required (e.g., Dalla Corte Max, Edge).',
+                        milkSystem: 'Professional cool-touch steam wand for manual milk frothing.',
+                        chocolateFlavor: 'N/A',
+                        coolingUnits: 'N/A',
+                        touchDisplay: 'Digital display for setting parameters.',
+                        cleaningSystem: 'Manual cleaning procedures with detergent.'
+                    },
+                    installation: {
+                        powerSupply: '220-240V, 2.6 kW. Standard single-phase connection.',
+                        waterConnection: 'Can operate with internal tank or plumbed to mains water (3/8" connection recommended).',
+                        drainage: 'Drip tray or optional direct drain connection (gravity drain).',
+                        filtration: 'Highly recommended for warranty and performance.',
+                        machineWeight: '27.5 kg',
+                        clearanceNeeded: 'Adequate space for ventilation and access for refilling water tank or servicing.',
+                        ventilation: 'Ensure good airflow around the machine.',
+                        moduleIntegration: 'Designed to be paired with external grinders.'
+                    },
+                    diagnosis: {
+                        'General/Power': [
+                            { error: 'Machine not powering on', solution: '<strong>Check power cord and wall outlet.</strong> Ensure the main power switch is engaged. Verify circuit breaker. If still no power, contact a technician.' },
+                            { error: 'Machine not heating up', solution: '<strong>Check power supply.</strong> Verify settings on the digital display for boiler temperatures. Could indicate a heating element or sensor issue; contact technician if persistent.' }
+                        ],
+                        'Brewing Unit / Coffee Quality': [
+                            { error: 'No coffee dispensed / Slow extraction', solution: '<strong>Check water tank level or mains water supply.</strong> Ensure pump is running. Verify coffee grind size (too fine will choke the machine). Clean group head and shower screen for blockages.' },
+                            { error: 'Coffee tastes bitter or sour', solution: '<strong>Adjust grind size:</strong> Too fine for bitter (over-extraction), too coarse for sour (under-extraction). Check brewing temperature. Ensure fresh coffee beans are used.' },
+                            { error: 'Leaking from group head during extraction', solution: '<strong>Inspect the group head gasket for wear and tear; replace if cracked or stiff.</strong> Ensure portafilter is correctly locked in. Clean group head to remove coffee grounds preventing a proper seal.' }
+                        ],
+                        'Water System': [
+                            { error: 'Water tank empty alert / No water flow', solution: '<strong>Refill water tank or verify mains water connection is open.</strong> Check for kinks in water lines. If applicable, check external water filter for clogging. Descale machine if limescale is suspected.' },
+                            { error: 'Water leaks (general)', solution: '<strong>Identify the source:</strong> Loose fittings, worn O-rings or seals. Disconnect power and contact a technician for internal leaks. Regular descaling helps prevent seal degradation.' }
+                        ],
+                        'Steam System': [
+                            { error: 'No steam / Weak steam pressure', solution: '<strong>Ensure the steam boiler is heated to temperature (check display).</strong> Purge steam wand tip for blockages. Descale the steam boiler and steam wand if limescale buildup is present. If issues persist, a solenoid valve or heating element may be faulty.' },
+                            { error: 'Steam wand leaking', solution: '<strong>Check steam wand valve for proper closure.</strong> Inspect steam wand O-rings; replace if worn. A technician may be needed for internal valve issues.' }
+                        ],
+                        'Grinder Issues (external grinders)': [
+                            { error: 'Coffee grind inconsistent / Grinder jammed (for external grinder)', solution: '<strong>Refer to specific grinder\'s troubleshooting guide.</strong> Typically involves checking for foreign objects, cleaning burrs, or adjusting grind settings. Ensure coffee beans are not too oily or stale.' }
+                        ]
+                    }
+                },
+                'Max': {
+                    brand: 'DallaCorte',
+                    type: 'grinder',
+                    name: 'Dalla Corte Max Grinder',
+                    general: 'The Dalla Corte Max grinder is an on-demand professional coffee grinder designed to deliver optimal consistency and grind quality for espresso. It features large flat burrs and programmable electronic dosing for precise control.',
+                    overview: {
+                        burrs: '64mm flat burrs',
+                        motor: 'High-performance motor',
+                        hopperCapacity: 'Approx. 600g',
+                        dosing: 'Programmable electronic dosing',
+                        dimensions: '160mm W x 470mm H x 240mm D',
+                        weight: '10 kg'
+                    },
+                    installation: {
+                        powerSupply: 'Standard electrical outlet (e.g., 220-240V).',
+                        placement: 'Position on a stable, flat surface near the espresso machine with adequate ventilation.',
+                        setup: 'Plug and play. No water connection needed.',
+                        filtration: 'N/A',
+                        machineWeight: '10 kg',
+                        clearanceNeeded: 'Adequate space around for bean hopper access and cleaning.',
+                        ventilation: 'Natural airflow sufficient for grinder operation.',
+                        moduleIntegration: 'Designed as a standalone grinder for espresso machines.'
+                    },
+                    cleaning: {
+                        daily: [
+                            'Brush out the grinding chute to remove residual coffee grounds.',
+                            'Wipe down the bean hopper and dose on-demand funnel.',
+                            'Clean the exterior with a damp cloth.'
+                        ],
+                        weekly: [
+                            'Empty the bean hopper and clean it thoroughly with a dry cloth.',
+                            'Use a grinder brush or vacuum to clean around the burrs (without full disassembly).'
+                        ],
+                        monthly: [
+                            'Professional cleaning and burr inspection by a technician recommended.',
+                            'Check burr alignment and wear if grind consistency declines.'
+                        ]
+                    },
+                    parts: {
+                        burrs: '64mm flat burrs for precise grinding.',
+                        hopper: '600g bean hopper.',
+                        dosingMechanism: 'Electronic, on-demand dosing system.',
+                        housing: 'Durable metal casing.',
+                        display: 'Simple digital display for dose programming.'
+                    },
+                    diagnosis: {
+                        'Grinding Issues': [
+                            { error: 'Grinder jammed / Not grinding', solution: '<strong>Immediately switch off. Empty bean hopper and check for foreign objects (stones, debris).</strong> If no foreign objects, gently try to clear jammed beans from the burrs using a brush (ensure grinder is off and unplugged). If still jammed, professional service may be required for burr inspection or motor issue.' },
+                            { error: 'Inconsistent grind size / Dose inaccuracy', solution: '<strong>Check burr calibration and adjustment settings.</strong> Ensure bean hopper is not running too low. Clean burrs from old coffee residue. If burrs are old or worn, they may need replacement.' },
+                            { error: 'No coffee dispensing when activated', solution: '<strong>Check bean hopper for sufficient beans.</strong> Ensure grinding mechanism is not jammed. Verify dose programming is active and correct. Check power supply to the grinder.' }
+                        ],
+                        'Motor/Power Issues': [
+                            { error: 'Grinder not turning on', solution: '<strong>Verify power cable connection to the wall outlet.</strong> Check main power switch on the grinder. Try a different outlet. If still no power, an internal electrical fault may be present; contact technician.' },
+                            { error: 'Unusual motor noise (e.g., straining)', solution: '<strong>This often indicates a jam or motor stress.</strong> Turn off immediately, clear beans, and inspect burr area. If noise persists without jamming, the motor may be failing; contact a technician.' }
+                        ]
+                    }
+                },
+                'Edge': {
+                    brand: 'DallaCorte',
+                    type: 'grinder',
+                    name: 'Dalla Corte Edge Grinder',
+                    general: 'The Dalla Corte Edge is a revolutionary professional coffee grinder known for its innovative parallel burr technology, digital motor, and real-time grind adjustment. It ensures superior consistency and minimal heat transfer, making it ideal for high-volume, precision-focused coffee environments.',
+                    overview: {
+                        burrs: '80mm parallel burrs',
+                        motor: 'Digital motor with speed control',
+                        hopperCapacity: '1.5 kg (beans), 0.5 kg (ground coffee)',
+                        dosing: 'Electronic dosing with real-time grind adjustment',
+                        dimensions: '220mm W x 610mm H x 350mm D',
+                        weight: '18 kg'
+                    },
+                    installation: {
+                        powerSupply: 'Dedicated electrical circuit (e.g., 220-240V).',
+                        placement: 'Position on a stable, flat surface near the espresso machine with adequate ventilation.',
+                        setup: 'Professional installation recommended due to advanced features and commercial use.',
+                        filtration: 'N/A',
+                        machineWeight: '18 kg',
+                        clearanceNeeded: 'Adequate space for bean hopper access, display interaction, and ventilation around the motor.',
+                        ventilation: 'Ensure good airflow, especially for high-volume use to manage heat from the digital motor.',
+                        moduleIntegration: 'Designed for seamless integration with high-end espresso machines (e.g., Dalla Corte multi-boiler models).'
+                    },
+                    cleaning: {
+                        daily: [
+                            'Brush out the grinding chute and dispensing area frequently.',
+                            'Wipe down the touchscreen and exterior surfaces.',
+                            'Ensure the bean hopper is free of old beans/oils.'
+                        ],
+                        weekly: [
+                            'Empty and thoroughly clean the bean hopper.',
+                            'Clean around the burr area with a brush (as per manual, without full disassembly).',
+                            'Check for any build-up in the ground coffee container/exit point.'
+                        ],
+                        monthly: [
+                            'Professional cleaning and inspection of parallel burrs and digital motor are highly recommended.',
+                            'Check calibration and consistency settings via the touchscreen menu.'
+                        ]
+                    },
+                    parts: {
+                        burrs: '80mm parallel burrs for consistent particle distribution.',
+                        motor: 'Digital motor for precise speed control and consistent grinding.',
+                        hopper: 'Large capacity bean hopper (1.5 kg).',
+                        display: 'Advanced touchscreen interface for control and adjustments.',
+                        dosingSystem: 'Real-time electronic dosing for accuracy.'
+                    },
+                    diagnosis: {
+                        'Grinding Issues': [
+                            { error: 'Grinder jammed / Beans not feeding', solution: '<strong>Switch off and unplug. Remove bean hopper and inspect for foreign objects (e.g., stones).</strong> Clear any blockages in the grinding chamber or chute. If still jammed or motor sounds stressed, contact a technician as parallel burrs require precise handling.' },
+                            { error: 'Inconsistent grind quality / Excessive fines', solution: '<strong>Check grind adjustment settings on the touchscreen; fine-tune as needed.</strong> Ensure burrs are clean. If consistency problems persist, the burrs may be worn or misaligned, requiring professional recalibration or replacement.' },
+                            { error: 'Grinder not dispensing coffee', solution: '<strong>Verify bean supply in hopper.</strong> Check for blockages in the dispensing chute. Ensure dose settings are correctly programmed and the grinder is receiving power and commands from the espresso machine (if integrated).' }
+                        ],
+                        'Electronic/Motor Issues': [
+                            { error: 'Grinder not turning on / Display unresponsive', solution: '<strong>Check power connection and dedicated circuit breaker.</strong> Attempt a soft restart. If the touchscreen is completely black or unresponsive, it might indicate a control board or display issue; contact technician.' },
+                            { error: 'Digital motor error codes', solution: '<strong>Refer to specific error codes displayed on the touchscreen.</strong> These codes provide diagnostic information. Follow the manual\'s instructions for the specific code or contact Franke/Dalla Corte service with the error code details.' },
+                            { error: 'Unusual sounds from motor (e.g., grinding, high-pitched whine)', solution: '<strong>Turn off immediately.</strong> This could indicate burr damage, motor overload, or a bearing issue. Do not operate. Contact a professional technician for assessment and repair.' }
+                        ]
+                    }
                 }
             };
 
-            // Show main content when enter button is clicked
-            enterButton.addEventListener('click', () => {
-                welcomePage.remove(); // This line removes the welcome page from the DOM
-                mainContentPage.style.display = 'flex';
-                // Trigger click on General Overview to show initial content
-                document.querySelector('.menu-button[data-target="overview"]').click();
-            });
+            // Function to dynamically create and display checkboxes
+            function displayMachineCheckboxes(targetElementId, typeFilter) {
+                const container = document.getElementById(targetElementId);
+                container.innerHTML = ''; // Clear previous checkboxes
 
-            // Menu button functionality
-            menuButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons
-                    menuButtons.forEach(btn => btn.classList.remove('active'));
-                    // Add active class to the clicked button
-                    button.classList.add('active');
+                // Add "Select All" checkbox
+                const selectAllCheckbox = document.createElement('label');
+                selectAllCheckbox.innerHTML = `<input type="checkbox" id="selectAll${targetElementId.replace('SelectionCheckboxes', '')}Machines"> Select All`;
+                container.appendChild(selectAllCheckbox);
 
-                    // Hide all content sections
-                    contentSections.forEach(section => section.classList.remove('active'));
-                    // Show the target content section
-                    const targetId = button.dataset.target;
-                    document.getElementById(targetId).classList.add('active');
+                const modelsForBrand = Object.keys(machineData).filter(key => machineData[key].brand === currentBrand);
 
-                    // Reset machine selections when changing main tabs
-                    resetMachineSelections();
-                    resetInstallationSelections();
-                    resetDiagnosisSelections(); // Reset diagnosis selections as well
+                modelsForBrand.forEach(machineKey => {
+                    const data = machineData[machineKey];
+                    // You can add more specific type filtering here if needed, e.g., only show grinders for parts section
+                    // For now, will show all machines for all sections that use this function.
+                    const label = document.createElement('label');
+                    label.innerHTML = `<input type="checkbox" class="${targetElementId.replace('SelectionCheckboxes', '')}-checkbox" value="${machineKey}"> ${data.name}`;
+                    container.appendChild(label);
                 });
-            });
 
-            // Helper function to reset all machine checkboxes for "Machine Details"
-            function resetMachineSelections() {
-                selectAllMachinesCheckbox.checked = false;
-                machineCheckboxes.forEach(checkbox => checkbox.checked = false);
-                machineDetailsContent.innerHTML = '<p class="text-gray-600">Select one or more machines above to view their detailed specifications.</p>';
-            }
+                // Attach event listeners for newly created checkboxes
+                const checkboxes = container.querySelectorAll(`.${targetElementId.replace('SelectionCheckboxes', '')}-checkbox`);
+                const selectAll = container.querySelector(`#selectAll${targetElementId.replace('SelectionCheckboxes', '')}Machines`);
 
-            // Helper function to reset all machine checkboxes for "Installation Manual"
-            function resetInstallationSelections() {
-                selectAllInstallationMachinesCheckbox.checked = false;
-                installationCheckboxes.forEach(checkbox => checkbox.checked = false);
-                installationManualContent.innerHTML = '<p class="text-gray-600">Select one or more machines above to view their installation details.</p>';
-            }
+                if (selectAll) {
+                    selectAll.addEventListener('change', (event) => {
+                        checkboxes.forEach(checkbox => {
+                            checkbox.checked = event.target.checked;
+                        });
+                        // Call respective update function based on targetElementId
+                        if (targetElementId === 'machineSelectionCheckboxes') updateMachineDetailsContent();
+                        else if (targetElementId === 'installationSelectionCheckboxes') updateInstallationManualContent();
+                        else if (targetElementId === 'diagnosisSelectionCheckboxes') updateDiagnosisSolutionContent();
+                        else if (targetElementId === 'cleaningSelectionCheckboxes') updateCleaningProceduresContent();
+                        else if (targetElementId === 'partsSelectionCheckboxes') updatePartsModulesContent();
+                    });
+                }
 
-            // Helper function to reset all machine checkboxes for "Diagnosis & Solution"
-            function resetDiagnosisSelections() {
-                selectAllDiagnosisMachinesCheckbox.checked = false;
-                diagnosisCheckboxes.forEach(checkbox => checkbox.checked = false);
-                diagnosisSolutionContent.innerHTML = '<p class="text-gray-600">No machine selected. Please select a machine to see common errors.</p>';
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', () => {
+                        // Call respective update function based on targetElementId
+                        if (targetElementId === 'machineSelectionCheckboxes') updateMachineDetailsContent();
+                        else if (targetElementId === 'installationSelectionCheckboxes') updateInstallationManualContent();
+                        else if (targetElementId === 'diagnosisSelectionCheckboxes') updateDiagnosisSolutionContent();
+                        else if (targetElementId === 'cleaningSelectionCheckboxes') updateCleaningProceduresContent();
+                        else if (targetElementId === 'partsSelectionCheckboxes') updatePartsModulesContent();
+                    });
+                });
             }
 
 
             // Function to update content based on selected machines in "Machine Details"
             function updateMachineDetailsContent() {
-                const selectedMachines = Array.from(machineCheckboxes)
+                const checkboxes = document.querySelectorAll('#machineSelectionCheckboxes .machine-checkbox');
+                const selectedMachines = Array.from(checkboxes)
                     .filter(checkbox => checkbox.checked)
                     .map(checkbox => checkbox.value);
 
@@ -1058,24 +1307,21 @@
 
                 selectedMachines.forEach(machineKey => {
                     const data = machineData[machineKey];
-                    if (data) {
+                    if (data && data.brand === currentBrand) { // Ensure displaying only for current brand
                         const machineDiv = document.createElement('div');
                         machineDiv.classList.add('p-4', 'mb-4', 'rounded-lg', 'bg-white', 'shadow-md');
-                        machineDiv.innerHTML = `
-                            <h3 class="text-2xl font-bold text-blue-700 mb-2 border-b-2 border-blue-400 pb-2">Franke ${machineKey}</h3>
+                        let contentHtml = `
+                            <h3 class="text-2xl font-bold text-blue-700 mb-2 border-b-2 border-blue-400 pb-2">${data.name}</h3>
                             <p>${data.general}</p>
 
                             <h4>Overview:</h4>
                             <table class="w-full text-sm">
                                 <tbody>
-                                    <tr><td class="font-semibold">Boiler(s):</td><td>${data.overview.boilers}</td></tr>
-                                    <tr><td class="font-semibold">Grinders:</td><td>${data.overview.grinders}</td></tr>
-                                    <tr><td class="font-semibold">Milk System:</td><td>${data.overview.milkSystem}</td></tr>
-                                    <tr><td class="font-semibold">Optional Add-ons:</td><td>${data.overview.optionalAddons}</td></tr>
-                                    <tr><td class="font-semibold">Power/Voltage:</td><td>${data.overview.powerVoltage}</td></tr>
-                                    <tr><td class="font-semibold">Recommended Daily Output:</td><td>${data.overview.dailyOutput}</td></tr>
-                                    <tr><td class="font-semibold">Dimensions (W x H x D):</td><td>${data.overview.dimensions}</td></tr>
-                                    <tr><td class="font-semibold">Weight:</td><td>${data.overview.weight}</td></tr>
+                        `;
+                        for (const key in data.overview) {
+                            contentHtml += `<tr><td class="font-semibold">${key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</td><td>${data.overview[key]}</td></tr>`;
+                        }
+                        contentHtml += `
                                 </tbody>
                             </table>
 
@@ -1085,29 +1331,8 @@
                                 <li><strong>Drainage:</strong> ${data.water.drainage}</li>
                                 <li><strong>Water Quality Requirements:</strong> ${data.water.quality}</li>
                             </ul>
-
-                            <h4>Key Parts & Modules:</h4>
-                            <ul>
-                                <li><strong>Brew Unit:</strong> ${data.parts.brewUnit}</li>
-                                <li><strong>Grinders:</strong> ${data.parts.grinders}</li>
-                                <li><strong>Milk Systems:</strong> ${data.parts.milkSystem}</li>
-                                <li><strong>Chocolate/Flavor Units:</strong> ${data.parts.chocolateFlavor}</li>
-                                <li><strong>Cooling Units:</strong> ${data.parts.coolingUnits}</li>
-                                <li><strong>Touch Display:</strong> ${data.parts.touchDisplay}</li>
-                                <li><strong>Cleaning System:</strong> ${data.parts.cleaningSystem}</li>
-                            </ul>
-
-                            <h4>Cleaning Procedures:</h4>
-                            <h5 class="font-semibold mt-2">Daily:</h5>
-                            <ol class="list-decimal list-inside">
-                                ${data.cleaning.daily.map(item => `<li>${item}</li>`).join('')}
-                            </ol>
-                            <h5 class="font-semibold mt-2">Weekly:</h5>
-                            <ol class="list-decimal list-inside">
-                                ${data.cleaning.weekly.map(item => `<li>${item}</li>`).join('')}
-                            </ol>
-                            ${data.cleaning.monthly ? `<h5 class="font-semibold mt-2">Monthly:</h5><ul class="list-disc list-inside">${data.cleaning.monthly.map(item => `<li>${item}</li>`).join('')}</ul>` : ''}
                         `;
+                        machineDiv.innerHTML = contentHtml;
                         machineDetailsContent.appendChild(machineDiv);
                     }
                 });
@@ -1115,7 +1340,8 @@
 
             // Function to update installation content based on selected machines
             function updateInstallationManualContent() {
-                const selectedMachines = Array.from(installationCheckboxes)
+                const checkboxes = document.querySelectorAll('#installationSelectionCheckboxes .installation-checkbox');
+                const selectedMachines = Array.from(checkboxes)
                     .filter(checkbox => checkbox.checked)
                     .map(checkbox => checkbox.value);
 
@@ -1128,21 +1354,18 @@
 
                 selectedMachines.forEach(machineKey => {
                     const data = machineData[machineKey];
-                    if (data && data.installation) {
+                    if (data && data.brand === currentBrand && data.installation) { // Ensure displaying only for current brand
                         const installationDiv = document.createElement('div');
                         installationDiv.classList.add('p-4', 'mb-4', 'rounded-lg', 'bg-white', 'shadow-md');
-                        installationDiv.innerHTML = `
-                            <h3 class="text-2xl font-bold text-blue-700 mb-2 border-b-2 border-blue-400 pb-2">Franke ${machineKey} - Installation Summary</h3>
+                        let contentHtml = `
+                            <h3 class="text-2xl font-bold text-blue-700 mb-2 border-b-2 border-blue-400 pb-2">${data.name} - Installation Summary</h3>
                             <table class="w-full text-sm">
                                 <tbody>
-                                    <tr><td class="font-semibold">Power Supply:</td><td>${data.installation.powerSupply}</td></tr>
-                                    <tr><td class="font-semibold">Water Connection:</td><td>${data.installation.waterConnection}</td></tr>
-                                    <tr><td class="font-semibold">Drainage:</td><td>${data.installation.drainage}</td></tr>
-                                    <tr><td class="font-semibold">Filtration:</td><td>${data.installation.filtration}</td></tr>
-                                    <tr><td class="font-semibold">Machine Weight:</td><td>${data.installation.machineWeight}</td></tr>
-                                    <tr><td class="font-semibold">Clearance Needed:</td><td>${data.installation.clearanceNeeded}</td></tr>
-                                    <tr><td class="font-semibold">Ventilation:</td><td>${data.installation.ventilation}</td></tr>
-                                    <tr><td class="font-semibold">Module Integration:</td><td>${data.installation.moduleIntegration}</td></tr>
+                        `;
+                        for (const key in data.installation) {
+                            contentHtml += `<tr><td class="font-semibold">${key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</td><td>${data.installation[key]}</td></tr>`;
+                        }
+                        contentHtml += `
                                 </tbody>
                             </table>
                             <h4 class="font-semibold mt-4">Technician Checklist Before Power On (General):</h4>
@@ -1158,6 +1381,7 @@
                                 <li>Run initial rinse & test espresso extraction</li>
                             </ul>
                         `;
+                        installationDiv.innerHTML = contentHtml;
                         installationManualContent.appendChild(installationDiv);
                     }
                 });
@@ -1165,7 +1389,8 @@
 
             // Function to update diagnosis content based on selected machines
             function updateDiagnosisSolutionContent() {
-                const selectedMachines = Array.from(diagnosisCheckboxes)
+                const checkboxes = document.querySelectorAll('#diagnosisSelectionCheckboxes .diagnosis-checkbox');
+                const selectedMachines = Array.from(checkboxes)
                     .filter(checkbox => checkbox.checked)
                     .map(checkbox => checkbox.value);
 
@@ -1178,11 +1403,11 @@
 
                 selectedMachines.forEach(machineKey => {
                     const data = machineData[machineKey];
-                    if (data && data.diagnosis) {
+                    if (data && data.brand === currentBrand && data.diagnosis) { // Ensure displaying only for current brand
                         const machineDiagnosisDiv = document.createElement('div');
                         machineDiagnosisDiv.classList.add('p-4', 'mb-4', 'rounded-lg', 'bg-white', 'shadow-md');
                         machineDiagnosisDiv.innerHTML = `
-                            <h3 class="text-2xl font-bold text-blue-700 mb-4 border-b-2 border-blue-400 pb-2">Franke ${machineKey} - Common Errors & Solutions</h3>
+                            <h3 class="text-2xl font-bold text-blue-700 mb-4 border-b-2 border-blue-400 pb-2">${data.name} - Common Errors & Solutions</h3>
                         `;
 
                         // Get all unique error categories for this machine and sort them
@@ -1206,46 +1431,200 @@
                 });
             }
 
+            // Function to update cleaning procedures content based on selected machines
+            function updateCleaningProceduresContent() {
+                const checkboxes = document.querySelectorAll('#cleaningSelectionCheckboxes .cleaning-checkbox');
+                const selectedMachines = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
 
-            // Event listeners for machine selection checkboxes
-            machineCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', updateMachineDetailsContent);
-            });
+                cleaningProceduresContent.innerHTML = ''; // Clear previous content
 
-            selectAllMachinesCheckbox.addEventListener('change', (event) => {
-                machineCheckboxes.forEach(checkbox => {
-                    checkbox.checked = event.target.checked;
+                if (selectedMachines.length === 0) {
+                    cleaningProceduresContent.innerHTML = '<p class="text-gray-600">Select one or more machines above to view their cleaning procedures.</p>';
+                    return;
+                }
+
+                selectedMachines.forEach(machineKey => {
+                    const data = machineData[machineKey];
+                    if (data && data.brand === currentBrand && data.cleaning) {
+                        const cleaningDiv = document.createElement('div');
+                        cleaningDiv.classList.add('p-4', 'mb-4', 'rounded-lg', 'bg-white', 'shadow-md');
+                        let contentHtml = `
+                            <h3 class="text-2xl font-bold text-blue-700 mb-2 border-b-2 border-blue-400 pb-2">${data.name} - Cleaning Procedures</h3>
+                            <h4 class="font-semibold mt-2">Daily:</h4>
+                            <ol class="list-decimal list-inside">
+                                ${data.cleaning.daily.map(item => `<li>${item}</li>`).join('')}
+                            </ol>
+                            <h4 class="font-semibold mt-2">Weekly:</h4>
+                            <ol class="list-decimal list-inside">
+                                ${data.cleaning.weekly.map(item => `<li>${item}</li>`).join('')}
+                            </ol>
+                        `;
+                        if (data.cleaning.monthly) {
+                            contentHtml += `<h4 class="font-semibold mt-2">Monthly/As Needed:</h4><ul class="list-disc list-inside">${data.cleaning.monthly.map(item => `<li>${item}</li>`).join('')}</ul>`;
+                        }
+                        cleaningDiv.innerHTML = contentHtml;
+                        cleaningProceduresContent.appendChild(cleaningDiv);
+                    }
                 });
-                updateMachineDetailsContent();
-            });
+            }
 
-            // Event listeners for installation machine selection checkboxes
-            installationCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', updateInstallationManualContent);
-            });
+            // Function to update parts and modules content based on selected machines
+            function updatePartsModulesContent() {
+                const checkboxes = document.querySelectorAll('#partsSelectionCheckboxes .parts-checkbox');
+                const selectedMachines = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
 
-            selectAllInstallationMachinesCheckbox.addEventListener('change', (event) => {
-                installationCheckboxes.forEach(checkbox => {
-                    checkbox.checked = event.target.checked;
+                partsModulesContent.innerHTML = ''; // Clear previous content
+
+                if (selectedMachines.length === 0) {
+                    partsModulesContent.innerHTML = '<p class="text-gray-600">Select one or more machines above to view their parts and modules.</p>';
+                    return;
+                }
+
+                selectedMachines.forEach(machineKey => {
+                    const data = machineData[machineKey];
+                    if (data && data.brand === currentBrand && data.parts) {
+                        const partsDiv = document.createElement('div');
+                        partsDiv.classList.add('p-4', 'mb-4', 'rounded-lg', 'bg-white', 'shadow-md');
+                        let contentHtml = `
+                            <h3 class="text-2xl font-bold text-blue-700 mb-2 border-b-2 border-blue-400 pb-2">${data.name} - Parts & Modules</h3>
+                            <ul>
+                        `;
+                        for (const key in data.parts) {
+                            contentHtml += `<li><strong>${key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</strong> ${data.parts[key]}</li>`;
+                        }
+                        contentHtml += `</ul>`;
+
+                        partsDiv.innerHTML = contentHtml;
+                        partsModulesContent.appendChild(partsDiv);
+                    }
                 });
-                updateInstallationManualContent();
-            });
 
-            // Event listeners for diagnosis machine selection checkboxes
-            diagnosisCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', updateDiagnosisSolutionContent);
-            });
+                // Add general notes at the end of the parts section if any machine is selected
+                if (selectedMachines.length > 0) {
+                    const generalNotesDiv = document.createElement('div');
+                    generalNotesDiv.classList.add('p-4', 'mb-4', 'rounded-lg', 'bg-white', 'shadow-md');
+                    generalNotesDiv.innerHTML = `
+                        <h3 class="text-2xl font-bold text-blue-700 mb-2 border-b-2 border-blue-400 pb-2">Important Notes for Installation and Maintenance:</h3>
+                        <ul>
+                            <li>Use only Franke/Dalla Corte-certified cleaning agents to prevent damage or voiding warranty.</li>
+                            <li>Set cleaning reminders based on beverage output volume.</li>
+                            <li>Maintain water quality logs if used in a HACCP-compliant environment.</li>
+                            <li>For installations, ensure:
+                                <ul>
+                                    <li>Drain pipe slope ≥2% (Franke) / ≥2% (Dalla Corte if direct drain)</li>
+                                    <li>Easy access to water shutoff</li>
+                                    <li>Clear ventilation behind the unit</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    `;
+                    partsModulesContent.appendChild(generalNotesDiv);
+                }
+            }
 
-            selectAllDiagnosisMachinesCheckbox.addEventListener('change', (event) => {
-                diagnosisCheckboxes.forEach(checkbox => {
-                    checkbox.checked = event.target.checked;
+
+            // Function to handle brand selection
+            function selectBrand(brand) {
+                currentBrand = brand;
+                brandSelectionPage.style.display = 'none';
+                mainContentPage.style.display = 'flex';
+
+                // Update header with selected brand's logo and website
+                headerBrandLogo.src = brandData[currentBrand].logo;
+                headerBrandLogo.alt = `${currentBrand} Logo`;
+                headerBrandWebsite.href = brandData[currentBrand].website;
+                headerBrandWebsite.textContent = brandData[currentBrand].website.replace(/(^\w+:|^)\/\//, ''); // Display without protocol
+
+                // Update the General Overview section with brand-specific overview
+                brandOverviewContent.textContent = brandData[currentBrand].generalOverview;
+
+                // Trigger click on General Overview to show initial content
+                document.querySelector('.menu-button[data-target="overview"]').click();
+
+                // Dynamically load checkboxes based on the selected brand for all relevant sections
+                displayMachineCheckboxes('machineSelectionCheckboxes');
+                displayMachineCheckboxes('installationSelectionCheckboxes');
+                displayMachineCheckboxes('diagnosisSelectionCheckboxes');
+                displayMachineCheckboxes('cleaningSelectionCheckboxes');
+                displayMachineCheckboxes('partsSelectionCheckboxes');
+            }
+
+            // Event listeners for brand cards
+            brandCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    selectBrand(card.dataset.brand);
                 });
-                updateDiagnosisSolutionContent();
             });
 
-            // Initial setup: Ensure the default "General Overview" is active
-            // and the machine selection sections are initially cleared.
-            document.querySelector('.menu-button[data-target="overview"]').click(); // Activate General Overview
+            // Event listener for "Back to Brands" button
+            backToBrandSelectionButton.addEventListener('click', () => {
+                mainContentPage.style.display = 'none';
+                brandSelectionPage.style.display = 'flex';
+                currentBrand = ''; // Reset selected brand
+
+                // Reset content areas and checkboxes when going back to brand selection
+                machineDetailsContent.innerHTML = '<p class="text-gray-600">Select one or more machines above to view their detailed specifications.</p>';
+                installationManualContent.innerHTML = '<p class="text-gray-600">Select one or more machines above to view their installation details.</p>';
+                diagnosisSolutionContent.innerHTML = '<p class="text-gray-600">No machine selected. Please select a machine to see common errors.</p>';
+                cleaningProceduresContent.innerHTML = '<p class="text-gray-600">Select one or more machines above to view their cleaning procedures.</p>';
+                partsModulesContent.innerHTML = '<p class="text-gray-600">Select one or more machines above to view their parts and modules.</p>';
+
+                document.getElementById('machineSelectionCheckboxes').innerHTML = '';
+                document.getElementById('installationSelectionCheckboxes').innerHTML = '';
+                document.getElementById('diagnosisSelectionCheckboxes').innerHTML = '';
+                document.getElementById('cleaningSelectionCheckboxes').innerHTML = '';
+                document.getElementById('partsSelectionCheckboxes').innerHTML = '';
+            });
+
+
+            // Menu button functionality
+            menuButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    menuButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to the clicked button
+                    button.classList.add('active');
+
+                    // Hide all content sections
+                    contentSections.forEach(section => section.classList.remove('active'));
+                    // Show the target content section
+                    const targetId = button.dataset.target;
+                    document.getElementById(targetId).classList.add('active');
+
+                    // If navigating to a machine-specific tab, ensure checkboxes are loaded for the current brand
+                    if (['machineDetails', 'installationManual', 'diagnosisSolution', 'cleaning', 'parts'].includes(targetId)) {
+                        let checkboxContainerId;
+                        let updateFunction;
+
+                        if (targetId === 'machineDetails') {
+                            checkboxContainerId = 'machineSelectionCheckboxes';
+                            updateFunction = updateMachineDetailsContent;
+                        } else if (targetId === 'installationManual') {
+                            checkboxContainerId = 'installationSelectionCheckboxes';
+                            updateFunction = updateInstallationManualContent;
+                        } else if (targetId === 'diagnosisSolution') {
+                            checkboxContainerId = 'diagnosisSelectionCheckboxes';
+                            updateFunction = updateDiagnosisSolutionContent;
+                        } else if (targetId === 'cleaning') {
+                            checkboxContainerId = 'cleaningSelectionCheckboxes';
+                            updateFunction = updateCleaningProceduresContent;
+                        } else if (targetId === 'parts') {
+                            checkboxContainerId = 'partsSelectionCheckboxes';
+                            updateFunction = updatePartsModulesContent;
+                        }
+
+                        displayMachineCheckboxes(checkboxContainerId);
+                        updateFunction(); // Re-trigger content update to show placeholders if nothing selected
+                    }
+                });
+            });
+
+            // Initial setup: The brand selection page is visible by default
+            // mainContentPage.style.display = 'none'; // This is already set by default in CSS for main-container
         });
     </script>
 </body>
