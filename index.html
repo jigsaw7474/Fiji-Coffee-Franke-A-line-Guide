@@ -13,11 +13,13 @@
             font-family: 'Inter', sans-serif;
             background: linear-gradient(to right bottom, #f0f4f8, #d9e2ec);
             color: #333;
-            min-height: 100vh;
+            min-height: 100vh; /* Ensure body takes full viewport height */
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
             overflow-x: hidden; /* Prevent horizontal scrolling */
+            padding: 1rem; /* Add some overall padding to the body */
+            box-sizing: border-box; /* Include padding in width/height calculations */
         }
 
         .brand-selection-container {
@@ -30,15 +32,12 @@
             padding: 3rem;
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            max-width: 90vw;
-            width: 800px;
+            max-width: 800px; /* Max width for desktop */
+            width: 100%; /* Occupy full width within its parent */
             animation: fadeInScale 0.7s ease-out;
-            box-sizing: border-box; /* Include padding in width calculation */
-            /* Ensure it's centered on the page */
-            position: absolute; /* Use absolute positioning for centering */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            box-sizing: border-box;
+            /* No absolute positioning here, let flexbox on body handle centering */
+            flex-shrink: 0; /* Prevent it from shrinking */
         }
 
         .brand-selection-container h1 {
@@ -71,6 +70,8 @@
         .fiji-coffee-overview p {
             line-height: 1.6;
             color: #4a5568;
+            word-wrap: break-word; /* Ensure long words wrap */
+            overflow-wrap: break-word; /* Modern equivalent */
         }
 
         .brand-cards-wrapper {
@@ -92,8 +93,9 @@
             cursor: pointer;
             transition: all 0.3s ease-in-out;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            width: 280px; /* Fixed width for consistent card size */
+            width: 280px; /* Fixed width for desktop */
             text-align: center;
+            box-sizing: border-box; /* Include padding in width */
         }
 
         .brand-card:hover {
@@ -137,30 +139,25 @@
         .main-container {
             display: none; /* Hidden initially */
             width: 100%;
-            height: 100vh;
+            max-width: 90vw; /* Responsive max-width */
+            max-height: 90vh; /* Responsive max-height */
             background-color: #f8fafc;
             padding: 2rem;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
-            overflow-y: auto;
-            /* New animation for center fade reveal */
-            animation: centerFadeInReveal 0.7s ease-out;
-            flex-direction: column; /* Ensure it's a flex column when displayed */
-            gap: 20px; /* Space between sections */
-            box-sizing: border-box; /* Include padding in width calculation */
-            /* Center the main container as well */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90vw; /* Keep it responsive */
-            max-height: 90vh; /* Keep it responsive */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Enable vertical scrolling */
+            animation: centerFadeInReveal 0.7s ease-out forwards; /* 'forwards' keeps the end state */
+            flex-direction: column;
+            gap: 20px;
+            box-sizing: border-box;
+            /* No absolute positioning here, let flexbox on body handle centering */
+            flex-shrink: 0; /* Prevent it from shrinking */
         }
 
-        /* Updated keyframes for center fade reveal */
+        /* Keyframes for center fade reveal */
         @keyframes centerFadeInReveal {
-            from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
-            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .header {
@@ -173,43 +170,43 @@
             align-items: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
             margin-bottom: 2rem;
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            flex-wrap: wrap;
         }
 
         .header h1 {
             font-size: 2.2rem;
             font-weight: 700;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-            flex-grow: 1; /* Allow title to take available space */
-            text-align: center; /* Center title by default */
+            flex-grow: 1;
+            text-align: center;
         }
 
         .header .logo-container {
             display: flex;
             align-items: center;
-            justify-content: center; /* Center logo horizontally */
-            width: 100px; /* Fixed width for logo */
-            height: 100px; /* Fixed height for logo */
-            background-color: rgba(255, 255, 255, 0.1); /* Placeholder background */
-            border-radius: 50%; /* Circular placeholder */
-            margin-right: 1.5rem; /* Space between logo and title */
-            overflow: hidden; /* Hide overflow if logo is too big */
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 1.5rem;
+            overflow: hidden;
         }
 
         .header .logo-container img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* Ensure logo fits within the container */
+            object-fit: contain;
         }
 
         .header .website-link {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #d1e5f8; /* Lighter color for link */
+            color: #d1e5f8;
             text-decoration: none;
             transition: color 0.3s ease;
-            margin-left: 1.5rem; /* Space from title */
-            white-space: nowrap; /* Prevent breaking */
+            margin-left: 1.5rem;
+            white-space: nowrap;
         }
 
         .header .website-link:hover {
@@ -261,7 +258,7 @@
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             animation: slideInUp 0.6s ease-out;
-            display: none; /* Hidden by default */
+            display: none;
         }
 
         @keyframes slideInUp {
@@ -270,7 +267,7 @@
         }
 
         .content-section.active {
-            display: block; /* Show active section */
+            display: block;
         }
 
         .content-section h2 {
@@ -425,13 +422,13 @@
             margin-bottom: 1.5rem;
             padding: 1rem;
             background-color: #f7fafc;
-            border-left: 5px solid #c53030; /* Stronger red border for error items */
+            border-left: 5px solid #c53030;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .error-item h4 {
-            color: #c53030; /* Error title color */
+            color: #c53030;
             margin-bottom: 0.5rem;
         }
         .error-item p {
@@ -441,59 +438,132 @@
             color: #2c5282;
         }
 
-        /* Responsive adjustments */
+        /* Responsive adjustments for mobile */
         @media (max-width: 768px) {
+            body {
+                padding: 0.5rem; /* Reduce overall body padding on small screens */
+            }
+
             .brand-selection-container {
-                padding: 1.5rem;
+                padding: 1.5rem; /* Adjusted padding for mobile */
+                gap: 1rem; /* Reduce gap between elements */
             }
             .brand-selection-container h1 {
-                font-size: 2rem;
+                font-size: 1.8rem; /* Smaller heading for mobile */
+                margin-bottom: 1rem;
+            }
+            .fiji-coffee-overview {
+                padding: 1rem; /* Smaller padding for overview */
+                margin-bottom: 1.5rem;
             }
             .fiji-coffee-overview h2 {
-                font-size: 1.4rem;
+                font-size: 1.3rem; /* Smaller heading for overview */
+                margin-bottom: 0.8rem;
+            }
+            .fiji-coffee-overview p {
+                font-size: 0.9rem; /* Smaller font size for paragraph */
             }
             .brand-cards-wrapper {
                 flex-direction: column;
                 align-items: center;
+                gap: 1.5rem; /* Smaller gap between cards */
             }
             .brand-card {
-                width: 100%;
-                max-width: 280px;
+                width: 100%; /* Take full width on mobile */
+                max-width: 250px; /* Limit max width to keep it neat on slightly larger mobiles */
+                padding: 1rem;
             }
+            .brand-card h2 {
+                font-size: 1.5rem;
+            }
+            .brand-card img {
+                width: 120px;
+                height: 80px;
+            }
+
+            .main-container {
+                padding: 1rem; /* Adjusted padding for main content on mobile */
+                max-width: 100%; /* Allow full width utilization */
+                max-height: 98vh; /* Max height for main content */
+                /* Remove transform here as body flex will center it */
+                transform: none;
+            }
+
             .header {
                 flex-direction: column;
                 text-align: center;
-                gap: 1rem;
+                gap: 0.8rem;
+                padding: 1rem;
+                margin-bottom: 1.5rem;
             }
             .header .logo-container {
                 margin-right: 0;
-                margin-bottom: 1rem;
-                order: 1; /* Move logo to top on mobile */
+                margin-bottom: 0.5rem;
+                order: 1;
+            }
+            .header h1 {
+                font-size: 1.8rem;
+                order: 2;
             }
             .header .website-link {
                 margin-left: 0;
-                margin-top: 0.5rem; /* Space between title and link on mobile */
-                order: 3; /* Move link to bottom on mobile */
+                margin-top: 0.5rem;
+                font-size: 0.9rem;
+                order: 3;
             }
             .menu-bar {
                 flex-direction: column;
                 align-items: stretch;
+                gap: 0.8rem;
+                padding: 1rem;
+                margin-bottom: 1.5rem;
             }
             .menu-button {
                 width: 100%;
                 justify-content: center;
+                padding: 0.7rem 1.2rem;
+                font-size: 0.95rem;
             }
             .content-section {
                 padding: 1.5rem;
             }
             .content-section h2 {
-                font-size: 1.7rem;
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
             }
             .content-section h3 {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
+                margin-top: 1.5rem;
+                margin-bottom: 0.8rem;
+            }
+            .content-section h4 {
+                font-size: 1rem;
+                margin-top: 1rem;
+                margin-bottom: 0.5rem;
+            }
+            .machine-selection {
+                flex-direction: column; /* Stack checkboxes on mobile */
+                gap: 0.5rem;
+                padding: 0.8rem;
             }
             .machine-selection label {
-                width: 100%; /* Make checkboxes full width on mobile */
+                width: 100%;
+                font-size: 0.9rem;
+            }
+            table {
+                font-size: 0.8rem; /* Smaller table text */
+            }
+            th, td {
+                padding: 0.6rem 0.8rem;
+            }
+            .error-item {
+                padding: 0.8rem;
+            }
+            .error-item h5 {
+                font-size: 1rem;
+            }
+            .error-item p {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -684,14 +754,21 @@
                     },
                     cleaning: {
                         daily: [
-                            'Menu → Cleaning & Maintenance → Clean Coffee Machine',
-                            'Rinse cycle runs for coffee circuit',
-                            'Clean grounds bin, drip tray, and milk spout'
+                            'Empty and clean the coffee grounds container and drip tray. Wash with warm, soapy water and rinse thoroughly.',
+                            'Wipe down all external surfaces of the machine, including the touch display, using a damp cloth and mild cleaner. Avoid abrasive materials.',
+                            'Perform an automatic rinse cycle for the coffee dispensing system through the machine\'s menu (usually "Cleaning & Maintenance" -> "Clean Coffee Machine").',
+                            'For milk systems, perform a quick rinse of the milk spout and steam wand after each use. At the end of the day, run the automatic daily milk system cleaning cycle if available.'
                         ],
                         weekly: [
-                            'Remove spout/brew parts → soak in hot water + detergent',
-                            'Milk system: Clean using Franke Milk Cleaning agent',
-                            'Descale monthly depending on water quality'
+                            'Perform a deep cleaning of the milk system using Franke Milk Cleaning Agent. Follow the machine\'s prompts for the "EasyClean" automatic milk system cycle. This involves placing the milk suction hose into the cleaning solution.',
+                            'Remove the coffee spout and other easily detachable brew parts (refer to your machine\'s manual for specific parts). Soak them in hot water with a mild detergent for 15-20 minutes, then scrub gently to remove coffee oil residue. Rinse thoroughly and reassemble.',
+                            'Clean the bean hoppers: Empty any remaining beans, wipe the inside of the hopper with a dry cloth to remove oil buildup, and ensure no residue is left before refilling.'
+                        ],
+                        monthly: [
+                            'Perform a deep descaling of the machine using a Franke-certified descaling agent. Follow the machine\'s on-screen instructions for the descaling program. This is crucial for preventing limescale buildup in the boilers and water lines, especially in areas with hard water.',
+                            'Inspect and clean the air filter (if accessible) and rear ventilation vents to ensure proper airflow and prevent overheating.',
+                            'For machines with chocolate/powder modules, perform the recommended weekly manual cleaning of their hoses and tanks, as outlined in the general cleaning guide.',
+                            'Perform a system health check via the UI diagnostics menu to monitor machine performance and identify any potential issues early.'
                         ]
                     },
                     parts: {
@@ -704,7 +781,7 @@
                         cleaningSystem: 'Manual & rinse, EasyClean (automatic cleaning system for milk, manual addition of cleaner), fully automatic descaling system'
                     },
                     installation: {
-                        powerSupply: '120 V/10 A (US standard) / 220–240 V (1LNPE 10A)',
+                        powerSupply: '120 V/10 A (US standard) / 220–240 V (1LNPE 10A) / 100V (1LNPE 15A)',
                         waterConnection: 'Mains (or internal tank), 3/8" compression fitting',
                         drainage: 'Optional hose or tank tray, Gravity slope ≥2%',
                         filtration: 'Recommended',
@@ -760,13 +837,19 @@
                     },
                     cleaning: {
                         daily: [
-                            'Rinse all product lines via menu',
-                            'Wipe display, handles, nozzles with microfiber cloth'
+                            'Empty and wash the drip tray and coffee grounds container with warm, soapy water. Rinse thoroughly and replace.',
+                            'Wipe down all external surfaces of the machine, including the touch display, with a damp cloth. For milk residues, use a dedicated milk cleaner-soaked cloth.',
+                            'Run an automatic rinse for all product lines (coffee, milk, chocolate) via the machine\'s menu to flush out residues.'
                         ],
                         weekly: [
-                            'Run CleanMaster full clean (automated)',
-                            'Manual cleaning: remove brew group, soak, and brush',
-                            'Clean milk lines using approved solution and rinse thoroughly'
+                            'Initiate and complete the full "CleanMaster" automated cleaning cycle. This typically involves inserting cleaning tablets for the coffee system and placing the milk hose into a container with Franke Milk Cleaning Agent.',
+                            'Remove the brewing group (refer to the manual for specific instructions as this can vary). Soak it in hot water with a cleaning detergent for 20-30 minutes, then use a brush to remove all coffee residue and oils. Rinse under running water until clean and reassemble properly.',
+                            'If applicable, manually clean any milk lines, nozzles, or frother components not covered by the automatic cycle using brushes and approved cleaning solutions. Rinse thoroughly.'
+                        ],
+                        monthly: [
+                            'Perform a deep descaling process using Franke-approved descaling solution. This will remove mineral buildup from boilers and water paths. Follow the machine\'s specific menu prompts for this cycle.',
+                            'Inspect and clean the air vents and filters (if accessible) to ensure proper airflow and prevent the machine from overheating.',
+                            'Review the machine\'s internal diagnostics (if available) to check for system health and any alerts or warnings that may indicate pending maintenance needs.'
                         ]
                     },
                     parts: {
@@ -831,17 +914,20 @@
                     },
                     cleaning: {
                         daily: [
-                            'Coffee and milk system auto rinse at shutdown',
-                            'Clean drip tray, grounds container, exterior touch surfaces'
+                            'Empty and clean the coffee grounds container and drip tray. Wash with warm, soapy water and rinse thoroughly.',
+                            'Wipe down all external surfaces of the machine, including the touch display, with a damp cloth. For milk residues, use a dedicated milk cleaner-soaked cloth.',
+                            'Perform an automatic rinse for all product lines (coffee, milk, chocolate) via the machine\'s menu to flush out residues.'
                         ],
                         weekly: [
-                            'Full CleanMaster cycle',
-                            'Remove and clean foam nozzles, milk lines, iced-coffee attachment',
-                            'Chocolate dispenser cleaning if applicable'
+                            'Initiate and complete the full "CleanMaster" automated cleaning cycle. This typically involves inserting cleaning tablets for the coffee system and placing the milk hose into a container with Franke Milk Cleaning Agent.',
+                            'Remove the brewing group (refer to the manual for specific instructions as this can vary). Soak it in hot water with a cleaning detergent for 20-30 minutes, then use a brush to remove all coffee residue and oils. Rinse under running water until clean and reassemble properly.',
+                            'If applicable, manually clean any milk lines, nozzles, or frother components not covered by the automatic cycle using brushes and approved cleaning solutions. Rinse thoroughly.',
+                            'For chocolate dispenser units, perform the separate weekly manual cleaning of hoses and tanks as recommended in the manual.'
                         ],
                         monthly: [
-                            'Descale boilers and hot water lines',
-                            'Inspect gaskets, connectors, and clean grinder housing'
+                            'Perform a deep descaling process using Franke-approved descaling solution. This will remove mineral buildup from boilers and water paths. Follow the machine\'s specific menu prompts for this cycle.',
+                            'Inspect and clean the air vents and filters (if accessible) to ensure proper airflow and prevent the machine from overheating.',
+                            'Review the machine\'s internal diagnostics (if available) to check for system health and any alerts or warnings that may indicate pending maintenance needs.'
                         ]
                     },
                     parts: {
@@ -879,15 +965,15 @@
                             { error: 'Water leaks from various points', solution: '<strong>Pinpoint the leak location.</strong> Common areas include drip tray connections, brew unit seals, or internal hoses. Tighten any loose connections. Worn gaskets or seals will need replacement. Frequent descaling reduces mineral buildup that can cause leaks. Contact technician if internal or persistent.' }
                         ],
                         'Milk System': [
-                            { error: 'Milk not frothing / Poor milk foam quality', solution: '<strong>Perform daily and weekly CleanMaster cycles for the milk system diligently.</strong> Ensure milk nozzles and lines are clear of dried milk residue. Check milk temperature (should be cold) and fat content. Verify milk suction hose is clean, not kinked, and fully submerged in milk. Descaling of the milk system is important.' },
+                            { error: 'Milk not frothing / Poor milk foam quality', solution: '<strong>Perform daily and weekly CleanMaster cycles for the milk system diligently.</strong> Ensure milk nozzles and lines are clear of dried milk residue. Check milk temperature (should be cold) and fat content. Verify milk suction hose is clean, not kinked, and properly submerged. Descale the milk system to clear limescale affecting performance.' },
                             { error: 'Milk not dispensing from FoamMaster', solution: '<strong>Check milk hose for blockages or kinks.</strong> Ensure milk container is full and milk type is selected correctly. Run milk cleaning cycles multiple times. Inspect FoamMaster components for residue buildup. If issue persists, internal milk pump or valve might be affected.' }
                         ],
                         'Grinder Issues': [
-                            { error: 'Grinder blocked / Beans not grinding', solution: '<strong>Empty bean hopper and inspect for foreign objects (stones, debris).</strong> Clean residual coffee grounds from the grinder. If bean flow is impeded, check the bean hopper outlet. If the motor sounds like it\'s struggling but not grinding, it may be a jammed burr or motor issue.' },
+                            { error: 'Grinder blocked / Beans not grinding', solution: '<strong>Empty bean hopper and inspect for foreign objects.</strong> Clean residual coffee grounds from the grinder. If bean flow is impeded, check the bean hopper outlet. If the motor sounds like it\'s struggling but not grinding, it may be a jammed burr or motor issue.' },
                             { error: 'Error related to grinder (e.g., too many increments)', solution: 'Refer to specific error codes on the display. Often relates to improper grind settings or bean type. <strong>Adjust grinder settings.</strong> Ensure bean quality is suitable for the machine. Perform system restart.' }
                         ],
                         'Chocolate/Flavor Issues': [
-                            { error: 'Chocolate/Flavor not dispensing', solution: '<strong>Check if powder hoppers are empty.</strong> Ensure correct product is selected on the touchscreen. Perform automated cleaning cycles for the chocolate/flavor unit. Manually clean hoses and tanks weekly as per maintenance guide. Check for blockages in dispensing nozzles.' }
+                            { error: 'Chocolate/Flavor not dispensing', solution: '<strong>Check powder levels in hoppers.</strong> Ensure automated cleaning cycles are run for these modules. Perform separate weekly manual cleaning of hoses and tanks for flavor/chocolate. Check for blockages in dispensing nozzles.' }
                         ]
                     }
                 },
@@ -913,19 +999,20 @@
                     },
                     cleaning: {
                         daily: [
-                            'Rinse via maintenance menu (coffee/milk/chocolate)',
-                            'Remove and wipe powder hoppers, brew spouts',
-                            'Clean touch display, cooler, and steam wand'
+                            'Initiate an automatic rinse cycle for the coffee, milk, and chocolate systems via the maintenance menu before closing operations.',
+                            'Remove and wipe clean all powder hoppers (e.g., chocolate, flavor). Ensure no residue is clinging to the sides.',
+                            'Clean the brew spouts and dispensing nozzles using a small brush and warm, soapy water. Rinse thoroughly.',
+                            'Wipe down the entire exterior of the machine, including the touch display, milk cooler (if external), and steam wands, using a damp cloth and mild, food-safe cleaner.'
                         ],
                         weekly: [
-                            'EasyClean deep cycle: Cleans milk, flavor, chocolate lines',
-                            'Brew unit removal → soak and sanitize → reassemble',
-                            'Clean coin/payment modules, suction hoses'
+                            'Run the "EasyClean" deep cleaning cycle for the milk, flavor, and chocolate lines. This automated process uses specialized cleaning agents to thoroughly sanitize the internal paths.',
+                            'Remove the entire brew unit (refer to the manual for detailed instructions). Soak the brew unit in a cleaning solution, scrub to remove all coffee residue and oils, then rinse thoroughly under running water. Allow to air dry before reassembling.',
+                            'Clean any external coin or payment modules and their suction hoses to ensure proper function and hygiene.'
                         ],
                         monthly: [
-                            'Deep descaling (with certified agent)',
-                            'Clean air filter, rear vents, and internal fans',
-                            'Perform system health check via UI diagnostics'
+                            'Perform a comprehensive deep descaling procedure using a Franke-certified descaling agent. This is crucial for maintaining optimal performance and extending the lifespan of the triple-boiler system by removing mineral buildup.',
+                            'Inspect and thoroughly clean the air filters, rear ventilation vents, and internal fans to prevent dust accumulation and ensure adequate cooling for high-volume operation.',
+                            'Conduct a detailed system health check via the UI diagnostics menu. This allows you to monitor key performance indicators and proactively address any potential issues.'
                         ]
                     },
                     parts: {
@@ -966,7 +1053,7 @@
                         ],
                         'Grinder Issues': [
                             { error: 'Grinder blocked / Beans not grinding / Inconsistent grind', solution: '<strong>Empty individual bean hoppers and check for foreign objects.</strong> Clean grinders thoroughly, especially with multiple hoppers and parallel grinding. Ensure adequate bean supply. If grind remains inconsistent or grinder is noisy, it might indicate worn ceramic burrs or a motor issue.' },
-                            { error: 'Chocolate/Flavor units not dispensing', solution: '<strong>Check powder levels in hoppers.</strong> Ensure automated cleaning cycles are run for these modules. Perform separate weekly manual cleaning of hoses and tanks for flavor/chocolate. Check for blockages in dispensing nozzles and proper module integration.' }
+                            { error: 'Chocolate/Flavor units not dispensing', solution: '<strong>Check powder levels in hoppers.</strong> Ensure automated cleaning cycles are run for these modules. Perform separate weekly manual cleaning of hoses and tanks for flavor/chocolate. Check for blockages in dispensing nozzles.' }
                         ]
                     }
                 },
@@ -992,22 +1079,22 @@
                     },
                     cleaning: {
                         daily: [
-                            'Insert one cleaning tablet into the coffee chute (lift rubber flap in front of bean hopper).',
-                            'Place 400ml water with 30ml milk cleaner into a cleaning container under the steam wand.',
-                            'Run the milk cleaning cycle as prompted by the machine.',
-                            'Empty the cleaning container, fill with 500ml of clean water, and place back under the steam wand to rinse.',
-                            'Clean the grounds bin and drip tray.',
-                            'Wipe down exterior surfaces and touch display with a clean, soft cloth.'
+                            'Clean the coffee outlet by inserting one cleaning tablet into the coffee chute (lift the rubber flap in front of the bean hopper) and following the on-screen prompts for the coffee system rinse cycle.',
+                            'For the milk system, prepare a cleaning solution of 400ml water with 30ml Franke Milk Cleaner. Place it in a cleaning container under the Autosteam Pro S3 steam wand. Run the automatic milk cleaning cycle as prompted by the machine.',
+                            'After the milk cleaning cycle, empty the cleaning container, fill it with 500ml of clean water, and place it back under the steam wand to perform a thorough rinse cycle for the milk lines.',
+                            'Empty and clean the coffee grounds bin and drip tray. Wash with warm, soapy water, rinse thoroughly, and dry before reinserting.',
+                            'Wipe down all exterior surfaces, including the touch display, side panels, and all dispensing areas, with a clean, soft, damp cloth. Avoid harsh chemicals.'
                         ],
                         weekly: [
-                            'Perform more in-depth cleaning cycles as prompted by the machine\'s maintenance menu.',
-                            'Ensure all removable parts (e.g., brew unit if easily removable) are cleaned manually as per the full user manual.',
-                            'Regular descaling is recommended based on water hardness and machine usage.'
+                            'Perform more in-depth cleaning cycles for both coffee and milk systems as prompted by the machine\'s maintenance menu. These cycles often require specific Franke cleaning tablets and solutions for optimal hygiene.',
+                            'If applicable, manually clean any easily removable parts of the brew unit as per the full user manual. This may involve soaking and scrubbing to remove stubborn coffee oils and residues.',
+                            'Inspect and clean the bean hoppers, ensuring they are free of old beans and coffee oil buildup. Wipe thoroughly with a dry cloth.',
+                            'Regular descaling is recommended based on your water hardness and machine usage. The machine will often alert you when descaling is due. Follow the prompted descaling program using a Franke-certified descaling agent.'
                         ],
                         monthly: [
-                            'Deep descaling (with certified agent) depending on usage and water quality.',
-                            'Inspect and clean air filters if accessible.',
-                            'Perform system health check via UI diagnostics.'
+                            'Perform a comprehensive deep descaling of the machine\'s internal components, including boilers and hot water lines, using a certified descaling agent. This extends the machine\'s lifespan and ensures consistent performance.',
+                            'If accessible, inspect and clean air filters and rear ventilation areas to maintain optimal airflow and prevent the machine from overheating during high-volume operation.',
+                            'Conduct a thorough system health check via the UI diagnostics. This allows for proactive identification of any potential issues and ensures all machine functions are operating optimally.'
                         ]
                     },
                     parts: {
@@ -1076,20 +1163,22 @@
                     },
                     cleaning: {
                         daily: [
-                            'Perform group head backflushing with a blind filter and cleaning detergent.',
-                            'Purge and wipe down the steam wand immediately after each milk frothing.',
-                            'Empty and clean the drip tray and coffee grounds drawer.',
-                            'Wipe down exterior surfaces with a damp cloth.'
+                            'Perform a group head backflushing cycle: Insert a blind filter basket into the portafilter (no coffee). Lock it into the group head. Activate the brew cycle for 10-15 seconds, then stop for 5 seconds, repeating 3-5 times. This flushes out loose coffee grounds.',
+                            'Remove the blind filter, replace with a regular filter, and run a quick flush to rinse the group head.',
+                            'Empty and clean the drip tray and coffee grounds drawer. Wash with warm, soapy water, rinse, and dry.',
+                            'After each milk frothing, purge the steam wand for 1-2 seconds to clear milk residue, then wipe it immediately with a damp cloth dedicated for milk. Ensure the tip is clear.',
+                            'Wipe down all external surfaces of the machine with a clean, damp cloth to remove spills and fingerprints.'
                         ],
                         weekly: [
-                            'Deep clean the group head: disassemble shower screen and dispersion block, soak in detergent, and scrub.',
-                            'Soak portafilters and baskets in a coffee machine cleaning solution.',
-                            'Check water tank (if used) for cleanliness and refill with fresh, filtered water.'
+                            'Deep clean the group head: Remove the shower screen and dispersion block (refer to your manual for specific steps as these can be tight). Soak these parts, along with your portafilters and filter baskets, in a dedicated espresso machine cleaning detergent solution (e.g., Cafiza) for 20-30 minutes. Scrub thoroughly with a brush to remove all baked-on coffee oils and residue. Rinse until no cleaner remains and reassemble.',
+                            'If using the internal water tank, empty it completely and clean it with warm, soapy water. Rinse thoroughly to remove any biofilm or scale, then refill with fresh, filtered water.',
+                            'Backflush the group head using cleaning detergent: Insert a blind filter with a small amount of detergent. Lock it in, activate the brew cycle for 10 seconds, then stop for 10 seconds. Repeat 5 times. Remove portafilter, rinse, and run plain water through the group head to flush out all detergent.',
+                            'Check the steam wand tip for any blockages and ensure all steam holes are clear. Use a needle or toothpick if necessary.'
                         ],
                         monthly: [
-                            'Backflush with descaling solution (if not connected to perfectly filtered mains water).',
-                            'Inspect and clean the steam wand tip and internal passages.',
-                            'Perform a thorough check of all seals and gaskets.'
+                            'If not connected to a consistently soft, filtered mains water supply, perform a full descaling procedure using a Dalla Corte-approved descaling solution. Follow the machine\'s specific instructions carefully. This removes limescale from boilers and pipes.',
+                            'Inspect all seals and gaskets (e.g., around the group head, steam wand). If they appear cracked, stiff, or show signs of leakage, they should be replaced by a qualified technician or according to the manual.',
+                            'For plumbed-in machines, check the external water filter status and replace it if it\'s due for replacement based on volume or time, as recommended by the filter manufacturer.'
                         ]
                     },
                     parts: {
@@ -1159,17 +1248,19 @@
                     },
                     cleaning: {
                         daily: [
-                            'Brush out the grinding chute to remove residual coffee grounds.',
-                            'Wipe down the bean hopper and dose on-demand funnel.',
-                            'Clean the exterior with a damp cloth.'
+                            'Brush out the grinding chute thoroughly to remove residual coffee grounds. Use a small brush or vacuum cleaner nozzle if available.',
+                            'Wipe down the bean hopper and the dose on-demand funnel (if present) with a dry, clean cloth to remove coffee oils and dust.',
+                            'Clean the exterior of the grinder with a damp, soft cloth. Avoid using harsh chemicals or abrasive materials.'
                         ],
                         weekly: [
-                            'Empty the bean hopper and clean it thoroughly with a dry cloth.',
-                            'Use a grinder brush or vacuum to clean around the burrs (without full disassembly).'
+                            'Completely empty the bean hopper. Remove it and clean it thoroughly with a dry cloth or mild, food-safe cleaner if oily. Ensure it is completely dry before reattaching.',
+                            'Using a grinder brush or a soft-bristled brush, clean around the burrs and grinding chamber. Do not fully disassemble the burrs unless you are trained to do so, as this can affect calibration. For light residue, a grinder vacuum can also be effective.',
+                            'Check for any significant build-up of ground coffee in the dispensing area and clean as necessary.'
                         ],
                         monthly: [
-                            'Professional cleaning and burr inspection by a technician recommended.',
-                            'Check burr alignment and wear if grind consistency declines.'
+                            'Professional cleaning and burr inspection by a qualified technician are highly recommended. This ensures optimal performance and extends the lifespan of the burrs.',
+                            'Check burr alignment and wear: If you notice a decline in grind consistency, an increase in noise, or changes in coffee taste, it might indicate burr wear or misalignment. A technician can assess this.',
+                            'Consider using grinder cleaning tablets (e.g., Grindz) occasionally. Follow the product instructions carefully. These tablets grind up and absorb coffee oils without leaving residue.'
                         ]
                     },
                     parts: {
@@ -1182,7 +1273,7 @@
                     diagnosis: {
                         'Grinding Issues': [
                             { error: 'Grinder jammed / Not grinding', solution: '<strong>Immediately switch off. Empty bean hopper and check for foreign objects (stones, debris).</strong> If no foreign objects, gently try to clear jammed beans from the burrs using a brush (ensure grinder is off and unplugged). If still jammed, professional service may be required for burr inspection or motor issue.' },
-                            { error: 'Inconsistent grind size / Dose inaccuracy', solution: '<strong>Check burr calibration and adjustment settings.</strong> Ensure bean hopper is not running too low. Clean burrs from old coffee residue. If burrs are old or worn, they may need replacement.' },
+                            { error: 'Inconsistent grind size / Dose inaccuracy', solution: '<strong>Check burr calibration and adjustment settings.</strong> Ensure bean hopper is not running too low. Clean burrs from old coffee residue. If burrs old or worn, they may need replacement.' },
                             { error: 'No coffee dispensing when activated', solution: '<strong>Check bean hopper for sufficient beans.</strong> Ensure grinding mechanism is not jammed. Verify dose programming is active and correct. Check power supply to the grinder.' }
                         ],
                         'Motor/Power Issues': [
@@ -1216,18 +1307,19 @@
                     },
                     cleaning: {
                         daily: [
-                            'Brush out the grinding chute and dispensing area frequently.',
-                            'Wipe down the touchscreen and exterior surfaces.',
-                            'Ensure the bean hopper is free of old beans/oils.'
+                            'Thoroughly brush out the grinding chute and dispensing area to remove all fresh ground coffee residue. Use a small, stiff brush or a dedicated grinder vacuum.',
+                            'Wipe down the touchscreen and all exterior surfaces with a clean, soft cloth. For oily residues, a slightly damp cloth with mild, food-safe detergent can be used, ensuring to dry completely afterward.',
+                            'Ensure the bean hopper is free of any old beans or excessive coffee oil buildup. Wipe its interior with a dry cloth.'
                         ],
                         weekly: [
-                            'Empty and thoroughly clean the bean hopper.',
-                            'Clean around the burr area with a brush (as per manual, without full disassembly).',
-                            'Check for any build-up in the ground coffee container/exit point.'
+                            'Completely empty the bean hopper and clean it thoroughly. If removable, wash it with warm, soapy water, rinse, and ensure it is completely dry before reattaching.',
+                            'Using a specialized grinder cleaning brush, clean around the burr area. While the burrs are not meant for daily removal by the user, ensure the visible parts of the grinding chamber are clear of buildup.',
+                            'Check for any significant accumulation of ground coffee in the ground coffee container or the exit point of the grinder. Clean as necessary to prevent blockages and maintain hygiene.'
                         ],
                         monthly: [
-                            'Professional cleaning and inspection of parallel burrs and digital motor are highly recommended.',
-                            'Check calibration and consistency settings via the touchscreen menu.'
+                            'Professional cleaning and inspection of the parallel burrs and the digital motor are highly recommended. Due to the precision engineering of the Edge, specialized tools and expertise are often required for optimal maintenance and calibration.',
+                            'Check the calibration and consistency settings via the touchscreen menu. If the grinder is producing inconsistent grinds or the motor seems to be straining, it might be an indication that the burrs are worn or misaligned, requiring professional service.',
+                            'Consider a comprehensive cleaning by a Dalla Corte-certified technician to ensure all internal components, including those related to the digital motor and advanced dosing system, are in optimal condition.'
                         ]
                     },
                     parts: {
@@ -1236,6 +1328,16 @@
                         hopper: 'Large capacity bean hopper (1.5 kg).',
                         display: 'Advanced touchscreen interface for control and adjustments.',
                         dosingSystem: 'Real-time electronic dosing for accuracy.'
+                    },
+                    installation: {
+                        powerSupply: 'Dedicated electrical circuit (e.g., 220-240V).',
+                        placement: 'Position on a stable, flat surface near the espresso machine with adequate ventilation.',
+                        setup: 'Professional installation recommended due to advanced features and commercial use.',
+                        filtration: 'N/A',
+                        machineWeight: '18 kg',
+                        clearanceNeeded: 'Adequate space for bean hopper access, display interaction, and ventilation around the motor.',
+                        ventilation: 'Ensure good airflow, especially for high-volume use to manage heat from the digital motor.',
+                        moduleIntegration: 'Designed for seamless integration with high-end espresso machines (e.g., Dalla Corte multi-boiler models).'
                     },
                     diagnosis: {
                         'Grinding Issues': [
@@ -1465,17 +1567,30 @@
                         cleaningDiv.classList.add('p-4', 'mb-4', 'rounded-lg', 'bg-white', 'shadow-md');
                         let contentHtml = `
                             <h3 class="text-2xl font-bold text-blue-700 mb-2 border-b-2 border-blue-400 pb-2">${data.name} - Cleaning Procedures</h3>
-                            <h4 class="font-semibold mt-2">Daily:</h4>
-                            <ol class="list-decimal list-inside">
-                                ${data.cleaning.daily.map(item => `<li>${item}</li>`).join('')}
-                            </ol>
-                            <h4 class="font-semibold mt-2">Weekly:</h4>
-                            <ol class="list-decimal list-inside">
-                                ${data.cleaning.weekly.map(item => `<li>${item}</li>`).join('')}
-                            </ol>
                         `;
-                        if (data.cleaning.monthly) {
-                            contentHtml += `<h4 class="font-semibold mt-2">Monthly/As Needed:</h4><ul class="list-disc list-inside">${data.cleaning.monthly.map(item => `<li>${item}</li>`).join('')}</ul>`;
+                        if (data.cleaning.daily && data.cleaning.daily.length > 0) {
+                            contentHtml += `
+                                <h4 class="font-semibold mt-4">Daily Cleaning:</h4>
+                                <ol class="list-decimal list-inside ml-4">
+                                    ${data.cleaning.daily.map(item => `<li>${item}</li>`).join('')}
+                                </ol>
+                            `;
+                        }
+                        if (data.cleaning.weekly && data.cleaning.weekly.length > 0) {
+                            contentHtml += `
+                                <h4 class="font-semibold mt-4">Weekly Cleaning:</h4>
+                                <ol class="list-decimal list-inside ml-4">
+                                    ${data.cleaning.weekly.map(item => `<li>${item}</li>`).join('')}
+                                </ol>
+                            `;
+                        }
+                        if (data.cleaning.monthly && data.cleaning.monthly.length > 0) {
+                            contentHtml += `
+                                <h4 class="font-semibold mt-4">Monthly/As Needed Cleaning:</h4>
+                                <ol class="list-decimal list-inside ml-4">
+                                    ${data.cleaning.monthly.map(item => `<li>${item}</li>`).join('')}
+                                </ol>
+                            `;
                         }
                         cleaningDiv.innerHTML = contentHtml;
                         cleaningProceduresContent.appendChild(cleaningDiv);
@@ -1544,7 +1659,7 @@
             function selectBrand(brand) {
                 currentBrand = brand;
                 brandSelectionPage.style.display = 'none';
-                mainContentPage.style.display = 'flex';
+                mainContentPage.style.display = 'flex'; // Use flex to trigger animations
 
                 // Update header with selected brand's logo and website
                 headerBrandLogo.src = brandData[currentBrand].logo;
@@ -1638,7 +1753,7 @@
 
             // Initial setup: The brand selection page is visible by default, main content page is hidden
             mainContentPage.style.display = 'none';
-            brandSelectionPage.style.display = 'flex'; // Ensure it's explicitly set to flex to be visible
+            brandSelectionPage.style.display = 'flex';
 
         });
     </script>
